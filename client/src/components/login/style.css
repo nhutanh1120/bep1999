@@ -1,0 +1,105 @@
+.login {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    opacity: 0;
+    padding: 40px 40px 20px;
+    background-color: #fff;
+    transform: translate(-50%, -70%);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: .5s;
+}
+
+.login.show {
+    opacity: 1;
+    top: 50%;
+}
+
+.login-close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    transform: translate(50%, -50%);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.login-close i {
+    color: gray;
+}
+
+.login-form {
+    position: relative;
+    border: 1px solid gray;
+}
+
+.login-form-header {
+    position: absolute;
+    left: 12px;
+    top: -18px;
+    padding: 8px;
+    background-color: #fff;
+    z-index: 10;
+}
+
+.login-form-content {
+    padding: 50px 50px 25px;
+}
+
+.login-form-submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.login-form-submit button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.login-form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.login-form-group .form-label {
+    width: 80px !important;
+}
+
+
+.login-form-group .form-control {
+    position: relative;
+    margin-left: 10px;
+}
+
+.login-form-group .form-control input {
+    width: 160px;
+    height: 25px;
+    padding: 5px 10px;
+    border: 1px solid gray;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.login-form-group .form-control input.focus {
+    border-color: red;
+}
+
+.login-form-group .login-form-error {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: max-content;
+    font-size: 14px;
+    color: red;
+}

@@ -18,17 +18,24 @@ const validateForm = (element) => {
     if (element.target) {
         element = element.target;
     }
-    if (element.id === "username" && isEmpty(element.value)) {
-        renderMessageError(element.id, USERNAME_EMPTY);
-        status = false;
-    }
-    if (element.id === "password" && isEmpty(element.value)) {
-        renderMessageError(element.id, PASSWORD_EMPTY);
-        status = false;
-    }
-    if (element.id === "password" && isLength(element.value, 8)) {
-        renderMessageError(element.id, PASSWORD_MIN);
-        status = false;
+    switch (element.id) {
+        case "username":
+            if (isEmpty(element.value)) {
+                renderMessageError(element.id, USERNAME_EMPTY);
+                status = false;
+            }
+            break;
+        case "password":
+            if (isEmpty(element.value)) {
+                renderMessageError(element.id, PASSWORD_EMPTY);
+                status = false;
+            } else if (isLength(element.value, 8)) {
+                renderMessageError(element.id, PASSWORD_MIN);
+                status = false;
+            }
+            break;
+        default:
+            break;
     }
     return status;
 };
@@ -39,11 +46,13 @@ const initialState = {
     error: "",
 };
 function Login(props) {
+    const [hidden, setHidden] = useState(true);
     const [user, setUser] = useState(initialState);
     const { username, password, error } = user;
 
     useEffect(() => {
         setUser(initialState);
+        setHidden(true);
     }, [props]);
 
     const handleChangeInput = (e) => {
@@ -52,7 +61,6 @@ function Login(props) {
     };
 
     const handleSubmit = async () => {
-        console.log(user);
         const elements = document.querySelectorAll(".login-form input");
         let status = true;
         elements.forEach((element) => {
@@ -73,7 +81,6 @@ function Login(props) {
                         withCredentials: true,
                     },
                 );
-                console.log(res);
                 if (res.data.status && !res.data.refresh_token) {
                     setUser({
                         ...user,
@@ -86,11 +93,10 @@ function Login(props) {
                     return redirect("/dashboard");
                 }
             } catch (error) {
-                error?.response?.data?.message &&
-                    setUser({
-                        ...user,
-                        error: Math.random(),
-                    });
+                setUser({
+                    ...user,
+                    error: Math.random(),
+                });
             }
         }
     };
@@ -145,7 +151,7 @@ function Login(props) {
                         </div>
                         <div className="form-control">
                             <input
-                                type="password"
+                                type={hidden ? "password" : "text"}
                                 id="password"
                                 name="password"
                                 onChange={handleChangeInput}
@@ -153,6 +159,9 @@ function Login(props) {
                                 onInput={handleInput}
                             />
                             <span className="login-form-error"></span>
+                            <div className="login-hidden-password" onClick={() => setHidden(!hidden)}>
+                                <i className={hidden ? "bx bxs-lock" : "bx bxs-lock-open"}></i>
+                            </div>
                         </div>
                     </div>
                 </div>

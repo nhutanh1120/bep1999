@@ -103,3 +103,20 @@
     font-size: 14px;
     color: red;
 }
+
+.login-form-group .login-hidden-password {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 100%;
+    cursor: pointer;
+    color: gray;
+}
+
+.login-form-group .login-hidden-password:hover {
+    color: black;
+}

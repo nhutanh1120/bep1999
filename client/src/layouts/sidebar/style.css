@@ -79,9 +79,21 @@
     line-height: 60px;
 }
 
-.sidebar .sidebar-list {
+.sidebar .sidebar-search {
     margin-top: 20px;
-    height: 100%;
+}
+
+.sidebar .sidebar-search li {
+    margin: 0;
+}
+
+.sidebar .sidebar-list {
+    height: calc(100% - 180px);
+    overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 .sidebar li {
@@ -306,5 +318,9 @@
 
     .sidebar .sidebar-footer {
         left: -100%;
+    }
+
+    .sidebar.open {
+        left: 0 !important;
     }
 }

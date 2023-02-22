@@ -4,7 +4,27 @@ import { Link } from "react-router-dom";
 import Logout from "./logout/index";
 import "./style.css";
 
+const menuBtnChange = (elmA, elmB) => {
+    if (elmA.classList.contains("open")) {
+        elmB.classList.replace("bx-menu", "bx-menu-alt-right");
+    } else {
+        elmB.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+};
+
 const Sidebar = ({ sidebarCurrent }) => {
+    const sidebar = document.querySelector(".sidebar");
+    const closeBtn = document.querySelector("#logo-close");
+    const searchBtn = document.querySelector(".bx-search");
+
+    closeBtn.onclick = () => {
+        sidebar.classList.toggle("open");
+        menuBtnChange(sidebar, closeBtn);
+    };
+    searchBtn.onclick = () => {
+        sidebar.classList.toggle("open");
+        menuBtnChange(sidebar, searchBtn);
+    };
     // const auth = useSelector((state) => state.auth);
 
     // const { user, isLogged, isAdmin } = auth;
@@ -12,28 +32,6 @@ const Sidebar = ({ sidebarCurrent }) => {
     const user = {
         avatar: "aa",
     };
-
-    useEffect(() => {
-        let sidebar = document.querySelector(".sidebar");
-        let closeBtn = document.querySelector("#logo-close");
-        let searchBtn = document.querySelector(".bx-search");
-
-        const menuBtnChange = () => {
-            if (sidebar.classList.contains("open")) {
-                closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-            } else {
-                closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-            }
-        };
-        closeBtn.onclick = () => {
-            sidebar.classList.toggle("open");
-            menuBtnChange();
-        };
-        searchBtn.onclick = () => {
-            sidebar.classList.toggle("open");
-            menuBtnChange();
-        };
-    }, []);
     return (
         <div className="sidebar">
             <div className="logo">
@@ -47,12 +45,14 @@ const Sidebar = ({ sidebarCurrent }) => {
                     <i className="bx bx-menu"></i>
                 </div>
             </div>
-            <ul className="sidebar-list">
+            <ul className="sidebar-search">
                 <li>
                     <i className="bx bx-search"></i>
                     <input type="text" placeholder="Tìm kiếm..." />
                     <span className="tooltip">Tìm kiếm</span>
                 </li>
+            </ul>
+            <ul className="sidebar-list">
                 {sidebarCurrent.map((item, index) => (
                     <li key={index}>
                         <Link to={item.link}>

@@ -1,0 +1,42 @@
+[
+    {
+        "link": "/",
+        "icon": "bx bx-home",
+        "title": "Trang chủ"
+    },
+    {
+        "link": "/dashboard",
+        "icon": "bx bx-grid-alt",
+        "title": "Bảng điều khiển"
+    },
+    {
+        "link": "/dashboard/customer",
+        "icon": "bx bx-user",
+        "title": "Người dùng"
+    },
+    {
+        "link": "/dashboard/product",
+        "icon": "bx bx-basket",
+        "title": "Nông sản"
+    },
+    {
+        "link": "/dashboard/message",
+        "icon": "bx bx-chat",
+        "title": "Tin nhắn"
+    },
+    {
+        "link": "/dashboard/post",
+        "icon": "bx bx-message-square-edit",
+        "title": "Tin tức"
+    },
+    {
+        "link": "/dashboard/email",
+        "icon": "bx bx-mail-send",
+        "title": "Gửi mail"
+    },
+    {
+        "link": "/dashboard/setting",
+        "icon": "bx bx-cog",
+        "title": "Cài đặt"
+    }
+]

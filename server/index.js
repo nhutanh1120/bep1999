@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 const authRouter = require("./routes/authRouter");
 
@@ -14,6 +15,7 @@ app.use(
         origin: (origin, callback) => callback(null, true), //accept all
     }),
 );
+app.use(cookieParser());
 
 app.get("/", (req, res) => res.send("Hello worlds"));
 app.use("/api/auth", authRouter);

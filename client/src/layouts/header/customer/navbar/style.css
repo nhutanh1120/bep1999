@@ -1,0 +1,32 @@
+.App-header .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--second-background);
+    width: 100%;
+    padding: 0;
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    padding: 0;
+}
+
+.navbar-menu li {
+    list-style-type: none;
+    padding: 0 30px;
+}
+
+.navbar-menu li>a {
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+    font-weight: 500;
+}
+
+.navbar-menu li:hover a {
+    color: #fc5492;
+}

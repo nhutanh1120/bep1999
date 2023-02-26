@@ -7,9 +7,8 @@ const userControllers = {
     // @access public
     register: async (req, res) => {
         try {
-            const { username, password, name, phone } = req.body;
-
-            if (!username || !password || !name || !phone) {
+            const { username, password } = req.body;
+            if (!username || !password) {
                 return res.status(400).json({
                     status: false,
                     message: "Please fill in all fields.",
@@ -24,7 +23,6 @@ const userControllers = {
             }
 
             const [user, _] = await User.findIdByUsername(username);
-            // check for existing user
             if (user.length !== 0) {
                 return res.status(400).json({
                     status: false,
@@ -37,10 +35,7 @@ const userControllers = {
             const userObj = {
                 username,
                 password: passwordHash,
-                name,
-                phone,
             };
-
             let newUser = new User(userObj);
             newUser = await newUser.save();
             return res.json({
@@ -57,7 +52,6 @@ const userControllers = {
     login: async (req, res) => {
         try {
             const { username, password } = req.body;
-
             const [user, _] = await User.findOneByUsername(username);
             if (user.length === 0) {
                 return res.status(400).json({
@@ -74,7 +68,7 @@ const userControllers = {
                 });
             }
 
-            const token = createToken({ id: user._id });
+            const token = createRefreshToken({ id: user[0].id });
             res.status(202).cookie("refresh", token, {
                 httpOnly: true,
                 path: "/",
@@ -92,11 +86,59 @@ const userControllers = {
             res.status(500).json({ status: false, message: "Internal server error." });
         }
     },
+    // @Router post /api/auth/logout
+    // @access private
+    logout: async (req, res) => {
+        try {
+            res.clearCookie("refresh");
+            return res.json({ status: true, message: "Logged out." });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ status: false, message: "Internal server error." });
+        }
+    },
+    // @Router post /api/auth/refresh
+    // @access private
+    getAccessToken: (req, res) => {
+        try {
+            const rfToken = req.cookies.refresh;
+            if (!rfToken) {
+                return res.status(400).json({
+                    status: false,
+                    message: "Please login now!",
+                });
+            }
+            jwt.verify(rfToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+                console.log(err, user);
+                if (err) {
+                    return res.status(400).json({
+                        status: false,
+                        message: "Please login now!",
+                    });
+                }
+
+                const accessToken = createAccessToken({ id: user.id });
+                return res.json({
+                    status: true,
+                    token: accessToken,
+                });
+            });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ status: false, message: "Internal server error." });
+        }
+    },
 };
 
-const createToken = (payload) => {
-    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+const createRefreshToken = (payload) => {
+    return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
         expiresIn: "7d",
+    });
+};
+
+const createAccessToken = (payload) => {
+    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+        expiresIn: "15m",
     });
 };
 

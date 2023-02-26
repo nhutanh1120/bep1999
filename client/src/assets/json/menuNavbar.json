@@ -1,0 +1,22 @@
+[
+    {
+        "link": "/",
+        "title": "Trang chủ"
+    },
+    {
+        "link": "/menu",
+        "title": "Thực đơn"
+    },
+    {
+        "link": "/posts",
+        "title": "Tin tức"
+    },
+    {
+        "link": "/sales",
+        "title": "Khuyến mãi"
+    },
+    {
+        "link": "/contact",
+        "title": "liên hệ"
+    }
+]

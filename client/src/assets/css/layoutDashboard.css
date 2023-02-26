@@ -1,0 +1,22 @@
+.Container {
+    position: relative;
+    background: var(--primary-background);
+    min-height: 100vh;
+    top: 0;
+    left: 78px;
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
+    z-index: 2;
+}
+
+.Container-section {
+    min-height: 550px;
+}
+
+@media (max-width: 450px) {
+    .Container {
+        padding-top: 100px;
+        width: 100%;
+        left: 0;
+    }
+}

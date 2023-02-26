@@ -13,18 +13,21 @@ const menuBtnChange = (elmA, elmB) => {
 };
 
 const Sidebar = ({ sidebarCurrent }) => {
-    const sidebar = document.querySelector(".sidebar");
-    const closeBtn = document.querySelector("#logo-close");
-    const searchBtn = document.querySelector(".bx-search");
+    useEffect(() => {
+        const sidebar = document.querySelector(".sidebar");
+        const closeBtn = document.querySelector("#logo-close");
+        const searchBtn = document.querySelector(".bx-search");
 
-    closeBtn.onclick = () => {
-        sidebar.classList.toggle("open");
-        menuBtnChange(sidebar, closeBtn);
-    };
-    searchBtn.onclick = () => {
-        sidebar.classList.toggle("open");
-        menuBtnChange(sidebar, searchBtn);
-    };
+        closeBtn.onclick = () => {
+            sidebar.classList.toggle("open");
+            menuBtnChange(sidebar, closeBtn);
+        };
+        searchBtn.onclick = () => {
+            sidebar.classList.toggle("open");
+            menuBtnChange(sidebar, searchBtn);
+        };
+    }, []);
+
     // const auth = useSelector((state) => state.auth);
 
     // const { user, isLogged, isAdmin } = auth;

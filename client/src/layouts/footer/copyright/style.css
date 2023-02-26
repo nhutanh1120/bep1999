@@ -1,0 +1,32 @@
+.footer-copyright {
+    background-color: var(--primary-background);
+}
+
+.copyright {
+    padding: 1rem;
+    text-align: center;
+    color: var(--txt-color);
+}
+
+.copyright.customer {
+    background-color: var(--second-background);
+    border-top: 1px solid lightgray;
+}
+
+.copyright a {
+    color: var(--second-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-family: ma;
+}
+
+.copyright a:hover {
+    color: #fc5492;
+}
+
+.copyright.dashboard {
+    background-color: var(--second-background);
+    border-radius: 15px;
+    margin: 0 20px;
+    box-shadow: var(--box-shadow);
+}

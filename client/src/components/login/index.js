@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { redirect } from "react-router-dom";
-import { API_URL } from "./../../constants/api";
+import { useNavigate } from "react-router-dom";
 import { showErrorToast } from "./../utils/notification/message";
 import { isEmpty, isLength } from "./../utils/validation/validation";
 import { USERNAME_EMPTY, PASSWORD_EMPTY, PASSWORD_MIN } from "./../../constants/message";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { dispatchLogin } from "./../../redux/actions/authAction";
+import authAPI from "./../../api/authAPI";
 import "./style.css";
 
 const renderMessageError = (id, message) => {
@@ -29,7 +30,7 @@ const validateForm = (element) => {
             if (isEmpty(element.value)) {
                 renderMessageError(element.id, PASSWORD_EMPTY);
                 status = false;
-            } else if (isLength(element.value, 8)) {
+            } else if (isLength(element.value, 6)) {
                 renderMessageError(element.id, PASSWORD_MIN);
                 status = false;
             }
@@ -46,6 +47,8 @@ const initialState = {
     error: "",
 };
 function Login(props) {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [hidden, setHidden] = useState(true);
     const [user, setUser] = useState(initialState);
     const { username, password, error } = user;
@@ -71,28 +74,21 @@ function Login(props) {
         });
         if (status) {
             try {
-                const res = await axios.post(
-                    API_URL + "/auth/login",
-                    {
-                        username,
-                        password,
-                    },
-                    {
-                        withCredentials: true,
-                    },
-                );
-                if (res.data.status && !res.data.refresh_token) {
+                const res = await authAPI.login(username, password);
+                if (!res.data.status && !res.data.token) {
                     setUser({
                         ...user,
-                        warning: Math.random(),
+                        error: Math.random(),
                     });
-                    return;
                 } else if (res.data.status) {
+                    closeForm();
                     setUser({ ...user, error: "" });
-
-                    return redirect("/dashboard");
+                    localStorage.setItem("firstLogin", true);
+                    dispatch(dispatchLogin());
+                    navigate("/dashboards", { replace: true });
                 }
             } catch (error) {
+                console.log(error);
                 setUser({
                     ...user,
                     error: Math.random(),
@@ -107,7 +103,7 @@ function Login(props) {
     };
 
     const closeForm = () => {
-        props.showLogin(false);
+        props.toggleLogin(false);
         const elements = document.querySelectorAll(".login-form input");
         elements.forEach((element) => {
             element.value = "";

@@ -1,0 +1,7 @@
+.App {
+    background-color: var(--primary-background);
+}
+
+.App-article {
+    min-height: 520px;
+}

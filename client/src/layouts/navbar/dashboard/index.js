@@ -1,9 +1,9 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { handleLogout } from "./../sidebar/logout/handleLogout";
-import Dropdown from "./dropdown/index";
-import ThemeMenu from "./theme/index";
+import { handleLogout } from "./../../sidebar/logout/handleLogout";
+import Dropdown from "./dropdown";
+import ThemeMenu from "./theme";
 import "./style.css";
 
 const profile = "";
@@ -52,18 +52,20 @@ const menuBtnChange = (elmA, elmB) => {
 };
 
 const Navbar = ({ userMenu }) => {
-    const sidebar = document.querySelector(".sidebar");
-    const closeBtn = document.querySelector(".dashboard-mobile");
-    const searchBtn = document.querySelector(".bx-search");
+    useEffect(() => {
+        const sidebar = document.querySelector(".sidebar");
+        const closeBtn = document.querySelector(".dashboard-mobile");
+        const searchBtn = document.querySelector(".bx-search");
 
-    closeBtn.onclick = () => {
-        sidebar.classList.toggle("open");
-        menuBtnChange(sidebar, closeBtn);
-    };
-    searchBtn.onclick = () => {
-        sidebar.classList.toggle("open");
-        menuBtnChange(sidebar, searchBtn);
-    };
+        closeBtn.onclick = () => {
+            sidebar.classList.toggle("open");
+            menuBtnChange(sidebar, closeBtn);
+        };
+        searchBtn.onclick = () => {
+            sidebar.classList.toggle("open");
+            menuBtnChange(sidebar, searchBtn);
+        };
+    }, []);
 
     const [filter, setFilter] = useState([]);
 
@@ -96,8 +98,8 @@ const Navbar = ({ userMenu }) => {
                 {typeof filter !== "string" && filter.length !== 0 && (
                     <div className="search-result">
                         {filter.slice(0, 15).map((item, index) => (
-                            <Link to={"/agricultural/manger/" + item._id} key={index}>
-                                <div>{item?.breed?.nameBreed}</div>
+                            <Link to={"/" + item._id} key={index}>
+                                <div>{item}</div>
                             </Link>
                         ))}
                     </div>

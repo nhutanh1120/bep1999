@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Password from "./../components/registerProfile/password";
+import Avatar from "./../components/registerProfile/avatar";
 import "./../assets/css/registerProfile.css";
 
 function RegisterProfile() {
-    const [state, setState] = useState(null);
     const [currentStep, setCurrentStep] = useState(1);
     const [prev, setPrev] = useState(true);
     const [next, setNext] = useState(false);
+    const [password, setPassword] = useState(null);
 
     const updateSteps = (e) => {
         const circles = document.querySelectorAll(".progress .circle"),
@@ -30,24 +31,24 @@ function RegisterProfile() {
     };
 
     let validate = false;
-    const handleNext = () => {
-        if (state) {
-            validate = true;
-        } else {
-            updateSteps();
-        }
-    };
-
-    const handleStep = (params) => {};
 
     const renderSwitch = () => {
         let component;
-        switch (state) {
+        switch (currentStep) {
             case 1:
+                component = <Password setPassword={setPassword} validate={validate} />;
                 break;
-
+            case 2:
+                component = <div>2</div>;
+                break;
+            case 3:
+                component = <div>3</div>;
+                break;
+            case 4:
+                component = <Avatar />;
+                break;
             default:
-                component = <Password handleStep={handleStep} validate={validate} />;
+                component = <Password setPassword={setPassword} validate={validate} />;
                 break;
         }
         return component;
@@ -69,7 +70,7 @@ function RegisterProfile() {
                 <button id="prev" disabled={prev} onClick={updateSteps}>
                     quay lại
                 </button>
-                <button id="next" disabled={next} onClick={handleNext}>
+                <button id="next" disabled={next} onClick={updateSteps}>
                     tiếp tục
                 </button>
             </div>

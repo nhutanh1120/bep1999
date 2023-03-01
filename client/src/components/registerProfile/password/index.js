@@ -10,9 +10,9 @@ function Password(props) {
     const [inputs, setInputs] = useState(initialState);
 
     const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
+        const { name, value } = event.target;
         setInputs((values) => ({ ...values, [name]: value }));
+        name === "password" && props.setPassword({ [name]: value });
     };
     return (
         <div className="password-create">

@@ -1,0 +1,35 @@
+.info-create {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.info-create .form-header {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 20px 0;
+}
+
+.info-create .form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.info-create .form-group .form-control {
+    width: 320px;
+    height: 35px;
+    background-color: aquamarine;
+    padding: 0 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.info-create .form-group .form-label {
+    text-transform: capitalize;
+}

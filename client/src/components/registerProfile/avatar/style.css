@@ -8,6 +8,7 @@
 .avatar .avatar-view img {
     width: 150px;
     height: 150px;
+    text-align: center;
     border-radius: 50%;
 }
 

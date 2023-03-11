@@ -1,8 +1,8 @@
 const db = require("./../config/db/index");
 class User {
     constructor(params) {
-        this.username = params.username;
-        this.password = params.password;
+        this.username = params.username || null;
+        this.password = params.password || null;
         this.forename = params.forename || null;
         this.surname = params.surname || null;
         this.male = params.male || null;
@@ -62,11 +62,45 @@ class User {
         return db.execute(sql, [username]);
     }
 
+    static findById(id) {
+        const sql = `SELECT *
+	                FROM users
+	                WHERE id = ?`;
+        return db.execute(sql, [id]);
+    }
+
     static findOneByUsername(username) {
         const sql = `SELECT *
 	                FROM users
 	                WHERE username = ?`;
         return db.execute(sql, [username]);
+    }
+
+    static findIdAndUpdate(id, params) {
+        const sql = `UPDATE users
+                        SET
+                            forename = ?,
+                            surname = ?,
+                            male = ?,
+                            birthday = ?,
+                            address = ?,
+                            phone = ?,
+                            description = ?,
+                            avatar = ?,
+                            updatedAt = NOW()
+                        WHERE id = ?`;
+        const param = [
+            params.forename,
+            params.surname,
+            params.male,
+            params.birthday,
+            params.address,
+            params.phone,
+            params.description,
+            params.avatar,
+            id,
+        ];
+        return db.execute(sql, param);
     }
 }
 

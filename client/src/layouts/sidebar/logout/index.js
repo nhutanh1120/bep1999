@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { handleLogout } from "./handleLogout";
 const profile = "a";
 
-const Logout = ({ fullname, permission, avatar }) => {
-    const [state, setState] = useState(fullname);
+const Logout = ({ staffName, permission, avatar }) => {
+    const [state, setState] = useState(staffName);
     if (state.length > 18) {
         const name = state.slice(0, 15) + "...";
         setState(name);

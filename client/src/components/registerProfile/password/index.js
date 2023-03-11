@@ -1,18 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.css";
 
-const initialState = {
-    password: "",
-    rptPassword: "",
-    error: "",
-};
 function Password(props) {
-    const [inputs, setInputs] = useState(initialState);
-
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setInputs((values) => ({ ...values, [name]: value }));
-        name === "password" && props.setPassword({ [name]: value });
+        props.setState({ ...props.state, [name]: value });
     };
     return (
         <div className="password-create">
@@ -25,7 +17,7 @@ function Password(props) {
                     type="text"
                     id="password"
                     name="password"
-                    value={inputs.password || ""}
+                    value={props.state.password || ""}
                     className="form-control"
                     onChange={handleChange}
                 />
@@ -38,7 +30,7 @@ function Password(props) {
                     type="text"
                     id="rptPassword"
                     name="rptPassword"
-                    value={inputs.rptPassword || ""}
+                    value={props.state.rptPassword || ""}
                     className="form-control"
                     onChange={handleChange}
                 />

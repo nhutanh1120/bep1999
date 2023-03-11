@@ -21,21 +21,17 @@ function App() {
                 dispatch({ type: "GET_TOKEN", payload: res.data.token });
             };
             getToken();
+            if (token) {
+                const getUser = () => {
+                    dispatch(dispatchLogin());
+                    return authAPI.fetchUserByToken(token).then((res) => {
+                        dispatch(dispatchGetUser(res));
+                    });
+                };
+                getUser();
+            }
         }
-    }, [isLogged, dispatch]);
-
-    useEffect(() => {
-        if (token) {
-            const getUser = () => {
-                dispatch(dispatchLogin);
-
-                return authAPI.fetchUserByToken(token).then((res) => {
-                    dispatch(dispatchGetUser(res));
-                });
-            };
-            getUser();
-        }
-    }, [token, dispatch]);
+    }, [isLogged, token, dispatch]);
     return (
         <Router>
             <Routes>

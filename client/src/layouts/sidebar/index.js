@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-// import { useSelector } from "react-redux";
+import sidebarCurrent from "./../../assets/json/sidebar.json";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Logout from "./logout/index";
 import "./style.css";
@@ -12,7 +13,9 @@ const menuBtnChange = (elmA, elmB) => {
     }
 };
 
-const Sidebar = ({ sidebarCurrent }) => {
+const Sidebar = () => {
+    const auth = useSelector((state) => state.auth);
+    const { user, role } = auth;
     useEffect(() => {
         const sidebar = document.querySelector(".sidebar");
         const closeBtn = document.querySelector("#logo-close");
@@ -27,14 +30,6 @@ const Sidebar = ({ sidebarCurrent }) => {
             menuBtnChange(sidebar, searchBtn);
         };
     }, []);
-
-    // const auth = useSelector((state) => state.auth);
-
-    // const { user, isLogged, isAdmin } = auth;
-    const isAdmin = true;
-    const user = {
-        avatar: "aa",
-    };
     return (
         <div className="sidebar">
             <div className="logo">
@@ -66,7 +61,12 @@ const Sidebar = ({ sidebarCurrent }) => {
                     </li>
                 ))}
             </ul>
-            <Logout fullname="nhut" permission={(isAdmin && "quản trị") || "nhân viên"} avatar={user.avatar} />
+            â
+            <Logout
+                staffName={`${user?.surname || null} ${user?.forename || null}`}
+                permission={role !== 0 ? "quản lý" : "nhân viên"}
+                avatar={user?.avatar}
+            />
         </div>
     );
 };

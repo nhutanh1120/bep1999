@@ -1,13 +1,27 @@
 import React, { useState } from "react";
 import Password from "./../components/registerProfile/password";
 import Avatar from "./../components/registerProfile/avatar";
+import Confirm from "../components/registerProfile/confirm";
+import Info from "../components/registerProfile/info";
 import "./../assets/css/registerProfile.css";
 
+const initialState = {
+    password: null,
+    rptPassword: null,
+    forename: null,
+    surname: null,
+    male: null,
+    birthday: null,
+    address: null,
+    phone: null,
+    description: null,
+    avatar: null,
+};
 function RegisterProfile() {
     const [currentStep, setCurrentStep] = useState(1);
     const [prev, setPrev] = useState(true);
     const [next, setNext] = useState(false);
-    const [password, setPassword] = useState(null);
+    const [state, setState] = useState(initialState);
 
     const updateSteps = (e) => {
         const circles = document.querySelectorAll(".progress .circle"),
@@ -36,19 +50,19 @@ function RegisterProfile() {
         let component;
         switch (currentStep) {
             case 1:
-                component = <Password setPassword={setPassword} validate={validate} />;
+                component = <Password state={state} setState={setState} validate={validate} />;
                 break;
             case 2:
-                component = <div>2</div>;
+                component = <Info state={state} setState={setState} />;
                 break;
             case 3:
-                component = <div>3</div>;
+                component = <Avatar state={state} setState={setState} />;
                 break;
             case 4:
-                component = <Avatar />;
+                component = <Confirm state={state} setState={setState} />;
                 break;
             default:
-                component = <Password setPassword={setPassword} validate={validate} />;
+                component = <Password state={state} setState={setState} validate={validate} />;
                 break;
         }
         return component;

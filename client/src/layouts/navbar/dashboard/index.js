@@ -1,6 +1,7 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { handleLogout } from "./../../sidebar/logout/handleLogout";
 import Dropdown from "./dropdown";
 import ThemeMenu from "./theme";
@@ -69,12 +70,12 @@ const Navbar = ({ userMenu }) => {
 
     const [filter, setFilter] = useState([]);
 
-    let user;
-    let role;
+    const auth = useSelector((state) => state.auth);
+    const { user, role } = auth;
 
     const curr_user = {
-        display_name: "user.surname" + " " + "user.forename",
-        image: "user.avatar",
+        displayName: `${user.surname} ${user.forename}`,
+        image: user.avatar,
     };
 
     const [message, setMessage] = useState([]);

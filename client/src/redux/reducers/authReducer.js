@@ -1,7 +1,7 @@
 import ACTIONS from "./../../constants/redux";
 
 const initialState = {
-    user: [],
+    user: null,
     role: 0,
     status: false,
     isLogged: false,
@@ -17,7 +17,7 @@ const authReducer = (state = initialState, action) => {
         case ACTIONS.GET_USER:
             return {
                 ...state,
-                user: action.payload.user,
+                user: action.payload.user[0],
                 status: action.payload.user.status,
                 role: action.payload.user.role,
             };

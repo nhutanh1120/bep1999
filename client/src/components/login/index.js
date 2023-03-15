@@ -85,7 +85,7 @@ function Login(props) {
                     setUser({ ...user, error: "" });
                     localStorage.setItem("firstLogin", true);
                     dispatch(dispatchLogin());
-                    navigate("/dashboards", { replace: true });
+                    navigate("/dashboard", { replace: true });
                 }
             } catch (error) {
                 console.log(error);

@@ -25,6 +25,11 @@
         "title": "Tin nhắn"
     },
     {
+        "link": "/dashboard/menu",
+        "icon": "bx bxs-widget",
+        "title": "Thực đơn"
+    },
+    {
         "link": "/dashboard/post",
         "icon": "bx bx-message-square-edit",
         "title": "Tin tức"

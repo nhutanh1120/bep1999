@@ -5,3 +5,19 @@
 .App-article {
     min-height: 520px;
 }
+
+.App-aside .hidden {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    background-color: black;
+    opacity: 0.8;
+}
+
+.App-aside .hidden.active {
+    display: block;
+}

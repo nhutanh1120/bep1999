@@ -1,8 +1,8 @@
 import React from "react";
 
-const renderContent = (food) => {
+const renderContent = (food, key) => {
     return (
-        <tr>
+        <tr key={key}>
             <td>#</td>
             <td>{food.name}</td>
             <td>giá</td>
@@ -15,9 +15,9 @@ function MenuBox(props) {
     return (
         <div className="menu-box">
             {props.lstMenu ? (
-                props.lstMenu.map((menu) => (
+                props.lstMenu.map((menu, index) => (
                     <>
-                        <div className="header">
+                        <div className="header" key={index}>
                             <h5>{menu.name}</h5>
                             <p>({menu.description})</p>
                         </div>
@@ -31,7 +31,7 @@ function MenuBox(props) {
                                         <th>ngày cập nhật</th>
                                     </tr>
                                 </thead>
-                                <tbody>{menu.food.map((food) => renderContent(food))}</tbody>
+                                <tbody>{menu.food.map((food, index) => renderContent(food, index))}</tbody>
                             </table>
                         </div>
                     </>

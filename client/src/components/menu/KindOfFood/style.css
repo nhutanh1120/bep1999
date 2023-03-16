@@ -1,0 +1,13 @@
+.form.kind-of-food .form-content {
+    padding: 40px 50px 20px;
+}
+
+.form.kind-of-food .form-control input {
+    width: 350px;
+    height: 30px;
+}
+
+.form.kind-of-food .form-control textarea {
+    width: 350px;
+    height: 70px;
+}

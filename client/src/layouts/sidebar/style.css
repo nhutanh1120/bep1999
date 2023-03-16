@@ -14,7 +14,7 @@
     width: 78px;
     background: var(--second-background);
     padding: 6px 14px;
-    z-index: 99;
+    z-index: 90;
     transition: all 0.5s ease;
     box-shadow: var(--box-shadow);
 }
@@ -31,7 +31,7 @@
 }
 
 .sidebar .logo .logo-icon,
-.sidebar .logo .logo-icon>span {
+.sidebar .logo .logo-icon > span {
     opacity: 0;
     transition: all 0.5s ease;
 }
@@ -44,7 +44,7 @@
     transition: all 0.5s ease;
 }
 
-.sidebar .logo .logo-name>.name {
+.sidebar .logo .logo-name > .name {
     text-transform: capitalize;
 }
 
@@ -277,7 +277,7 @@
     background: none;
 }
 
-.sidebar.open~.Container {
+.sidebar.open ~ .Container {
     left: 250px;
     width: calc(100% - 250px);
 }

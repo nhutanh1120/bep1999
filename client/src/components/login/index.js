@@ -6,6 +6,7 @@ import { USERNAME_EMPTY, PASSWORD_EMPTY, PASSWORD_MIN } from "./../../constants/
 import { useDispatch } from "react-redux";
 import { dispatchLogin } from "./../../redux/actions/authAction";
 import authAPI from "./../../api/authAPI";
+import "./../../assets/css/form.css";
 import "./style.css";
 
 const renderMessageError = (id, message) => {
@@ -104,7 +105,8 @@ function Login(props) {
 
     const closeForm = () => {
         props.toggleLogin(false);
-        const elements = document.querySelectorAll(".login-form input");
+        document.querySelector("#hidden").classList.remove("active");
+        const elements = document.querySelectorAll(".form-container input");
         elements.forEach((element) => {
             element.value = "";
             element.nextElementSibling.innerText = "";
@@ -118,14 +120,14 @@ function Login(props) {
         }
     }, [error]);
     return (
-        <div className={(props.display && "login show") || "login"}>
-            <div className="login-close" onClick={closeForm}>
+        <div className={(props.display && "form login show") || "form login"}>
+            <div className="form-close" onClick={closeForm}>
                 <i className="bx bx-x bx-md"></i>
             </div>
-            <div className="login-form">
-                <div className="login-form-header">Thông tin đăng nhập</div>
-                <div className="login-form-content">
-                    <div className="login-form-group">
+            <div className="form-container">
+                <div className="form-header">Thông tin đăng nhập</div>
+                <div className="form-content">
+                    <div className="form-group">
                         <div className="form-label">
                             <label htmlFor="username">Tài khoản:</label>
                         </div>
@@ -138,10 +140,10 @@ function Login(props) {
                                 onBlur={validateForm}
                                 onInput={handleInput}
                             />
-                            <span className="login-form-error"></span>
+                            <span className="form-error"></span>
                         </div>
                     </div>
-                    <div className="login-form-group">
+                    <div className="form-group">
                         <div className="form-label">
                             <label htmlFor="password">Mật khẩu:</label>
                         </div>
@@ -154,17 +156,17 @@ function Login(props) {
                                 onBlur={validateForm}
                                 onInput={handleInput}
                             />
-                            <span className="login-form-error"></span>
-                            <div className="login-hidden-password" onClick={() => setHidden(!hidden)}>
+                            <span className="form-error"></span>
+                            <div className="hidden-password" onClick={() => setHidden(!hidden)}>
                                 <i className={hidden ? "bx bxs-lock" : "bx bxs-lock-open"}></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="login-form-submit">
+            <div className="form-submit">
                 <button type="submit" onClick={handleSubmit}>
-                    Đăng nhập
+                    đăng nhập
                 </button>
             </div>
         </div>

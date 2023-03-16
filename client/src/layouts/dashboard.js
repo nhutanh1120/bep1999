@@ -18,6 +18,10 @@ function DashBoardLayout({ children }) {
                     <CopyRight isDashboard={true} />
                 </footer>
             </article>
+            <aside className="App-aside">
+                <div id="toast"></div>
+                <div id="hidden" className="hidden"></div>
+            </aside>
         </div>
     );
 }

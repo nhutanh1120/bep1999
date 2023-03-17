@@ -47,10 +47,10 @@ function KindOfFood(props) {
         }
         try {
             const res = await kindOfFoodAPI.createKindOfFood(token, {
-                name: kindOfFood,
-                description: kindOfFood,
+                name: kindOfFood.name,
+                description: kindOfFood.description,
             });
-            if (!res.data.status && !res.data.token) {
+            if (res.data.status) {
                 setKindOfFood({
                     ...kindOfFood,
                     error: Math.random(),

@@ -1,4 +1,4 @@
-const User = require("./../models/User");
+const Users = require("./../models/nosql/Users");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -22,7 +22,7 @@ const userControllers = {
                 });
             }
 
-            const [user, _] = await User.findIdByUsername(username);
+            const user = await Users.findOne({ username });
             if (user.length !== 0) {
                 return res.status(400).json({
                     status: false,

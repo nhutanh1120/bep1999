@@ -3,7 +3,8 @@ import { API_URL } from "./../constants/api";
 
 const kindOfFoodAPI = {
     createKindOfFood: async (token, params) => {
-        const response = await axios.patch(
+        console.log(params);
+        const response = await axios.post(
             `${API_URL}/menu/kind/food/create`,
             {
                 ...params,

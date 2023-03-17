@@ -3,6 +3,7 @@ import Sidebar from "./sidebar";
 import Navbar from "./navbar/dashboard";
 import CopyRight from "./footer/copyright";
 import menu from "./../assets/json/menu.json";
+import ScrollTop from "./scrollTop";
 import "./../assets/css/layoutDashboard.css";
 
 function DashBoardLayout({ children }) {
@@ -21,6 +22,7 @@ function DashBoardLayout({ children }) {
             <aside className="App-aside">
                 <div id="toast"></div>
                 <div id="hidden" className="hidden"></div>
+                <ScrollTop />
             </aside>
         </div>
     );

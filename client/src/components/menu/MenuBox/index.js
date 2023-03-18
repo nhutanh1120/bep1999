@@ -1,12 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 const renderContent = (food, key) => {
     return (
         <tr key={key}>
-            <td>#</td>
-            <td>{food.name}</td>
-            <td>giá</td>
-            <td>ngày cập nhật</td>
+            <td>{key + 1}</td>
+            <td>{food.fName}</td>
+            <td>{food.fPrice}</td>
+            <td>{food.fUpdatedAt}</td>
         </tr>
     );
 };
@@ -14,27 +14,29 @@ const renderContent = (food, key) => {
 function MenuBox(props) {
     return (
         <div className="menu-box">
-            {props.lstMenu ? (
+            {props.lstMenu.length !== 0 ? (
                 props.lstMenu.map((menu, index) => (
-                    <>
-                        <div className="header" key={index}>
-                            <h5>{menu.name}</h5>
-                            <p>({menu.description})</p>
+                    <Fragment key={index}>
+                        <div className="header">
+                            <h5>{menu.kofName}</h5>
+                            <p>({menu.kofDescription})</p>
                         </div>
                         <div className="content">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Tên món</th>
-                                        <th>giá</th>
-                                        <th>ngày cập nhật</th>
-                                    </tr>
-                                </thead>
-                                <tbody>{menu.food.map((food, index) => renderContent(food, index))}</tbody>
-                            </table>
+                            {menu?.food && menu?.food?.length !== 0 && (
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tên món</th>
+                                            <th>giá</th>
+                                            <th>ngày cập nhật</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>{menu.food.map((food, index) => renderContent(food, index))}</tbody>
+                                </table>
+                            )}
                         </div>
-                    </>
+                    </Fragment>
                 ))
             ) : (
                 <>

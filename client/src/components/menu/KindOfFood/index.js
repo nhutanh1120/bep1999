@@ -4,6 +4,7 @@ import { isEmpty } from "./../../utils/validation/validation";
 import { KIND_OF_FOOD_EMPTY } from "./../../../constants/message";
 import { useDispatch, useSelector } from "react-redux";
 import kindOfFoodAPI from "./../../../api/menuAPI";
+import { dispatchCreateKindOfFood } from "./../../../redux/actions/menuAction";
 import "./../../../assets/css/form.css";
 import "./style.css";
 
@@ -51,10 +52,7 @@ function KindOfFood(props) {
                 description: kindOfFood.description,
             });
             if (res.data.status) {
-                setKindOfFood({
-                    ...kindOfFood,
-                    error: Math.random(),
-                });
+                dispatch(dispatchCreateKindOfFood(res.data));
                 showSuccessToast(`Loại món ăn '${kindOfFood.name}' thêm mới thành công.`);
             }
         } catch (error) {

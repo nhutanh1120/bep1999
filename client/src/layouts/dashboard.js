@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "./sidebar";
 import Navbar from "./navbar/dashboard";
 import CopyRight from "./footer/copyright";
 import menu from "./../assets/json/menu.json";
 import ScrollTop from "./scrollTop";
+import kindOfFoodAPI from "./../api/menuAPI";
+import { dispatchFindAllMenu } from "./../redux/actions/menuAction";
+import { useDispatch } from "react-redux";
 import "./../assets/css/layoutDashboard.css";
 
 function DashBoardLayout({ children }) {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (dispatch) {
+            const getAllMenu = () => {
+                return kindOfFoodAPI.findAllMenu().then((res) => {
+                    dispatch(dispatchFindAllMenu(res.data));
+                });
+            };
+            getAllMenu();
+        }
+    }, [dispatch]);
     return (
         <div className="App">
             <Sidebar />

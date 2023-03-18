@@ -47,6 +47,18 @@ class KindOfFood {
                     WHERE kind_of_food.isDeleted = 0`;
         return db.execute(sql);
     }
+
+    static findOneById(id) {
+        const sql = `SELECT kind_of_food.id as kofId, 
+                            kind_of_food.name as kofName, 
+                            kind_of_food.description as kofDescription, 
+                            kind_of_food.isDeleted as kofIsDeleted, 
+                            kind_of_food.createdAt as kofCreatedAt, 
+                            kind_of_food.updatedAt as kofUpdatedAt
+	                FROM kind_of_food
+	                WHERE id = ?`;
+        return db.execute(sql, [id]);
+    }
 }
 
 module.exports = KindOfFood;

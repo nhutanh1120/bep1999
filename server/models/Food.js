@@ -1,4 +1,4 @@
-const db = require("./../config/db/index");
+const db = require("./../config/db/mysql/index");
 class Food {
     constructor(params) {
         this.name = params.name || null;

@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MenuBox from "./../components/menu/MenuBox";
 import KindOfFood from "./../components/menu/KindOfFood";
+import { useSelector } from "react-redux";
 import "./../assets/css/menu.css";
 
-const lstMenu = [
-    {
-        name: "Lẩu",
-        description: "đậm chất lẩu việt",
-        food: [],
-    },
-];
-
 function Menu() {
-    const dispatch = useDispatch();
+    const lstMenu = useSelector((state) => state.menu);
     const [state, setState] = useState(false);
     const toggleDisplay = (status) => {
         setState(status);
@@ -22,16 +15,6 @@ function Menu() {
         document.querySelector("#hidden").classList.add("active");
     };
 
-    useEffect(() => {
-        if (dispatch) {
-            const getAllMenu = () => {
-                return fetchAllAgricultural().then((res) => {
-                    dispatch(dispatchGetAllAgricultural(res));
-                });
-            };
-            getAllMenu();
-        }
-    }, [dispatch]);
     return (
         <div className="menu">
             <div className="menu-header">

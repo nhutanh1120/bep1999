@@ -91,11 +91,11 @@
     margin: 0;
     font-size: 16px;
     padding-left: 10px;
+    text-transform: capitalize;
 }
 
 .menu-box .content {
     padding: 30px;
-    min-height: 450px;
 }
 
 .menu-box .content table {

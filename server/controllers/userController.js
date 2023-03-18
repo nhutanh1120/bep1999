@@ -1,4 +1,4 @@
-const Users = require("./../models/nosql/Users");
+const User = require("./../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -22,7 +22,7 @@ const userControllers = {
                 });
             }
 
-            const user = await Users.findOne({ username });
+            const [user, _] = await User.findIdByUsername(username);
             if (user.length !== 0) {
                 return res.status(400).json({
                     status: false,
@@ -109,7 +109,6 @@ const userControllers = {
                 });
             }
             jwt.verify(rfToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
-                console.log(err, user);
                 if (err) {
                     return res.status(400).json({
                         status: false,

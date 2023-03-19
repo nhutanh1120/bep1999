@@ -13,7 +13,7 @@ function DefaultLayout({ children }) {
     const [state, setState] = useState(false);
     const toggleLogin = (status) => {
         setState(status);
-        document.querySelector("#hidden").classList.add("active");
+        document.querySelector("#overlay").classList.add("active");
     };
     return (
         <div className="App">
@@ -28,7 +28,7 @@ function DefaultLayout({ children }) {
             </footer>
             <aside className="App-aside">
                 <div id="toast"></div>
-                <div id="hidden" className="hidden"></div>
+                <div id="overlay" className="overlay"></div>
                 <Login display={state} toggleLogin={toggleLogin} />
             </aside>
         </div>

@@ -105,7 +105,7 @@ function Login(props) {
 
     const closeForm = () => {
         props.toggleLogin(false);
-        document.querySelector("#hidden").classList.remove("active");
+        document.querySelector("#overlay").classList.remove("active");
         const elements = document.querySelectorAll(".form-container input");
         elements.forEach((element) => {
             element.value = "";

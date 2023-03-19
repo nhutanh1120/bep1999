@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import "./style.css";
 
 const renderContent = (food, key) => {
     return (
@@ -42,7 +43,7 @@ function MenuBox(props) {
                 <>
                     <div className="header">
                         <h5>Thực đơn bếp 1999</h5>
-                        <p>(Vui lòng chọn thực đơn)</p>
+                        <p>(Vui lòng cập nhật thực đơn)</p>
                     </div>
                     <div className="content"></div>
                 </>

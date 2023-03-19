@@ -1,0 +1,118 @@
+.menu-box {
+    max-width: 100%;
+    width: 980px;
+    background-color: var(--second-background);
+    box-shadow: var(--box-shadow-menu);
+}
+
+.menu-box .header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #c1392b;
+    color: var(--txt-white);
+    padding: 10px 20px;
+    width: 102%;
+    right: 1%;
+    position: relative;
+}
+
+.menu-box .header::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -10px;
+    border-top: 10px solid #c1392b;
+    border-right: 10px solid transparent;
+}
+
+.menu-box .header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    border-top: 10px solid #c1392b;
+    border-left: 10px solid transparent;
+}
+
+.menu-box .header h5 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28px;
+    text-transform: uppercase;
+}
+
+.menu-box .header p {
+    margin: 0;
+    font-size: 16px;
+    padding-left: 10px;
+    text-transform: capitalize;
+}
+
+.menu-box .content {
+    padding: 30px;
+    min-height: 150px;
+}
+
+.menu-box .content table {
+    width: 100%;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.menu-box .content table th {
+    background-color: #969494;
+    color: var(--txt-white);
+    border-bottom: 2px solid var(--txt-white);
+    text-transform: capitalize;
+}
+
+.menu-box .content table,
+th,
+td {
+    border-right: 1px solid var(--txt-white);
+    border-bottom: 1px solid #dee2e6;
+    border-collapse: collapse;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.menu-box .content table tr:nth-child(even) td {
+    background-color: #f5f5f5;
+}
+
+@media (max-width: 450px) {
+    .menu-box {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    .menu-box .header {
+        width: 104% !important;
+        right: 2% !important;
+    }
+
+    .menu-box .header h5 {
+        font-size: 16px;
+        line-height: 8px;
+    }
+
+    .menu-box .header p {
+        font-size: 10px;
+        padding-left: 3px;
+    }
+
+    .menu-box .header::after {
+        bottom: -7px;
+        border-top: 8px solid #c1392b;
+        border-left: 8px solid transparent;
+    }
+
+    .menu-box .header::before {
+        bottom: -7px;
+        border-top: 8px solid #c1392b;
+        border-right: 8px solid transparent;
+    }
+}

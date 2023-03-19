@@ -12,7 +12,7 @@ function Menu() {
     };
     const handleClickKindOfFood = () => {
         setState(true);
-        document.querySelector("#hidden").classList.add("active");
+        document.querySelector("#overlay").classList.add("active");
     };
 
     return (

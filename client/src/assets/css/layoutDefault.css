@@ -6,7 +6,7 @@
     min-height: 520px;
 }
 
-.App-aside .hidden {
+.App-aside .overlay {
     display: none;
     position: fixed;
     top: 0;
@@ -18,6 +18,6 @@
     opacity: 0.8;
 }
 
-.App-aside .hidden.active {
+.App-aside .overlay.active {
     display: block;
 }

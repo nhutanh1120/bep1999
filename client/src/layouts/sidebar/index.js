@@ -61,7 +61,6 @@ const Sidebar = () => {
                     </li>
                 ))}
             </ul>
-            â
             <Logout
                 staffName={`${user?.surname || null} ${user?.forename || null}`}
                 permission={role !== 0 ? "quản lý" : "nhân viên"}

@@ -34,6 +34,7 @@
     --border-color: #fff;
     --border-color-second: #dee2e6;
 
+    --box-shadow-menu: #888 0 0 8px 1px;
     --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
@@ -54,6 +55,7 @@
     --border-color: transparent;
     --border-color-second: transparent;
 
+    --box-shadow-menu: rgba(0, 0, 0, 0.2) 0px 5px 10px;
     --box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
 }
 

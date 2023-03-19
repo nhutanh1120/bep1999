@@ -1,4 +1,5 @@
 .form {
+    visibility: hidden;
     position: fixed;
     top: 45%;
     left: 50%;
@@ -7,11 +8,12 @@
     background-color: #fff;
     transform: translate(-50%, -70%);
     box-shadow: var(--box-shadow);
-    transition: 0.5s;
+    transition: visibility ease 0.2s, opacity ease 0.5s, top ease 0.5s;
     z-index: 100;
 }
 
 .form.show {
+    visibility: visible;
     opacity: 1;
     top: 50%;
 }

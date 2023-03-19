@@ -306,4 +306,8 @@
     .sidebar.open {
         left: 0 !important;
     }
+
+    .sidebar.open .sidebar-footer {
+        left: 0 !important;
+    }
 }

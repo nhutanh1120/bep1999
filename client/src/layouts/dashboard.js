@@ -35,7 +35,7 @@ function DashBoardLayout({ children }) {
             </article>
             <aside className="App-aside">
                 <div id="toast"></div>
-                <div id="hidden" className="hidden"></div>
+                <div id="overlay" className="overlay"></div>
                 <ScrollTop />
             </aside>
         </div>

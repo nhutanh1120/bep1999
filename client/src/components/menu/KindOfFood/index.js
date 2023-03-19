@@ -71,7 +71,7 @@ function KindOfFood(props) {
 
     const closeForm = () => {
         props.toggleDisplay(false);
-        document.querySelector("#hidden").classList.remove("active");
+        document.querySelector("#overlay").classList.remove("active");
         const elements = document.querySelectorAll(".form-container input");
         elements.forEach((element) => {
             element.value = "";
@@ -86,7 +86,7 @@ function KindOfFood(props) {
         }
     }, [error]);
     return (
-        <div className={(props.display && "form show kind-of-food") || "form"}>
+        <div className={(props.display && "form kind-of-food show") || "form kind-of-food"}>
             <div className="form-close" onClick={closeForm}>
                 <i className="bx bx-x bx-md"></i>
             </div>

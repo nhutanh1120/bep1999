@@ -1,0 +1,23 @@
+.form.food .form-content {
+    padding: 40px 50px 20px;
+}
+
+.form.food .form-control input,
+select,
+textarea {
+    width: 350px;
+}
+
+.form.food .form-control input,
+select {
+    height: 30px;
+}
+
+.form.food .form-control textarea {
+    height: 70px;
+    text-transform: capitalize;
+}
+
+.form.food .form-control .option {
+    text-transform: capitalize;
+}

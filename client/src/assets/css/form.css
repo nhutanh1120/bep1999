@@ -6,7 +6,7 @@
     opacity: 0;
     padding: 40px 40px 20px;
     background-color: #fff;
-    transform: translate(-50%, -70%);
+    transform: translate(-50%, -50%);
     box-shadow: var(--box-shadow);
     transition: visibility ease 0.2s, opacity ease 0.5s, top ease 0.5s;
     z-index: 100;
@@ -96,18 +96,11 @@
     margin-left: 0 !important;
 }
 
-.form-group .form-control input {
+.form-group .form-control input,
+select,
+textarea {
     width: 160px;
     height: 25px;
-    padding: 5px 10px;
-    border: 1px solid gray;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.form-group .form-control textarea {
-    width: 160px;
-    height: 45px;
     padding: 5px 10px;
     border: 1px solid gray;
     border-radius: 3px;

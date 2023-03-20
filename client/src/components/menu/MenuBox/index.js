@@ -1,4 +1,6 @@
 import React, { Fragment } from "react";
+import moment from "moment";
+import { formatNumber } from "./../../utils/format";
 import "./style.css";
 
 const renderContent = (food, key) => {
@@ -6,8 +8,9 @@ const renderContent = (food, key) => {
         <tr key={key}>
             <td>{key + 1}</td>
             <td>{food.fName}</td>
-            <td>{food.fPrice}</td>
-            <td>{food.fUpdatedAt}</td>
+            <td className="price">{formatNumber(food.fPrice)}&nbsp;vnd</td>
+            <td>{moment(food.fUpdatedAt).format("DD.MM.YYYY")}</td>
+            <td>{food.fDescription || "-"}</td>
         </tr>
     );
 };
@@ -31,6 +34,7 @@ function MenuBox(props) {
                                             <th>Tên món</th>
                                             <th>giá</th>
                                             <th>ngày cập nhật</th>
+                                            <th>mô tả</th>
                                         </tr>
                                     </thead>
                                     <tbody>{menu.food.map((food, index) => renderContent(food, index))}</tbody>

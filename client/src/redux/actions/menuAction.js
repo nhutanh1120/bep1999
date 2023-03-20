@@ -17,3 +17,12 @@ export const dispatchCreateKindOfFood = (res) => {
         },
     };
 };
+
+export const dispatchCreateFood = (res) => {
+    return {
+        type: ACTIONS.CREATE_FOOD,
+        payload: {
+            food: res.food,
+        },
+    };
+};

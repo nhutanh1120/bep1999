@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_URL } from "./../constants/api";
 
-const kindOfFoodAPI = {
+const menuAPI = {
     findAllMenu: async () => {
         const response = await axios.get(`${API_URL}/menu/find/all`);
         return response;
@@ -20,6 +20,20 @@ const kindOfFoodAPI = {
         );
         return response;
     },
+    createFood: async (token, params) => {
+        const response = await axios.post(
+            `${API_URL}/menu/food/create`,
+            {
+                ...params,
+            },
+            {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            },
+        );
+        return response;
+    },
 };
 
-export default kindOfFoodAPI;
+export default menuAPI;

@@ -43,6 +43,10 @@
     color: #bbb;
 }
 
+.menu .menu-food.disable-events {
+    pointer-events: none;
+}
+
 @media (max-width: 450px) {
     .menu {
         display: block !important;

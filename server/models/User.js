@@ -19,7 +19,7 @@ class User {
     }
 
     async save() {
-        const sql = `INSERT INTO users(
+        const sql = `INSERT INTO users (
                         username, 
                         password, 
                         forename, 

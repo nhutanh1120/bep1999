@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { showSuccessToast, showErrorToast } from "./../../utils/notification/message";
-import { isEmpty } from "./../../utils/validation/validation";
-import { KIND_OF_FOOD_EMPTY } from "./../../../constants/message";
+import { isEmpty, isLength } from "./../../utils/validation/validation";
+import { KIND_OF_FOOD_EMPTY, KIND_OF_FOOD_MAX_LENGTH } from "./../../../constants/message";
 import { useDispatch, useSelector } from "react-redux";
-import kindOfFoodAPI from "./../../../api/menuAPI";
+import menuAPI from "./../../../api/menuAPI";
 import { dispatchCreateKindOfFood } from "./../../../redux/actions/menuAction";
 import "./../../../assets/css/form.css";
 import "./style.css";
@@ -25,7 +25,7 @@ const initialState = {
     description: "",
     error: "",
 };
-function KindOfFood(props) {
+function FormKindOfFood(props) {
     const token = useSelector((state) => state.token);
     const dispatch = useDispatch();
     const [kindOfFood, setKindOfFood] = useState(initialState);
@@ -45,9 +45,12 @@ function KindOfFood(props) {
         if (isEmpty(element.value)) {
             renderMessageError(element.id, KIND_OF_FOOD_EMPTY);
             return;
+        } else if (isLength(element.value, 5)) {
+            renderMessageError(element.id, KIND_OF_FOOD_MAX_LENGTH);
+            return;
         }
         try {
-            const res = await kindOfFoodAPI.createKindOfFood(token, {
+            const res = await menuAPI.createKindOfFood(token, {
                 name: kindOfFood.name,
                 description: kindOfFood.description,
             });
@@ -56,7 +59,6 @@ function KindOfFood(props) {
                 showSuccessToast(`Loại món ăn '${kindOfFood.name}' thêm mới thành công.`);
             }
         } catch (error) {
-            console.log(error);
             setKindOfFood({
                 ...kindOfFood,
                 error: Math.random(),
@@ -70,14 +72,8 @@ function KindOfFood(props) {
     };
 
     const closeForm = () => {
-        props.toggleDisplay(false);
+        props.toggleDisplay(null);
         document.querySelector("#overlay").classList.remove("active");
-        const elements = document.querySelectorAll(".form-container input");
-        elements.forEach((element) => {
-            element.value = "";
-            element.nextElementSibling.innerText = "";
-            element.classList.remove("focus");
-        });
     };
 
     useEffect(() => {
@@ -86,7 +82,7 @@ function KindOfFood(props) {
         }
     }, [error]);
     return (
-        <div className={(props.display && "form kind-of-food show") || "form kind-of-food"}>
+        <div className={(props.display === "kind" && "form kind-of-food show") || "form kind-of-food"}>
             <div className="form-close" onClick={closeForm}>
                 <i className="bx bx-x bx-md"></i>
             </div>
@@ -102,6 +98,7 @@ function KindOfFood(props) {
                                 type="text"
                                 id="name"
                                 name="name"
+                                value={kindOfFood.name || ""}
                                 onChange={handleChangeInput}
                                 onBlur={validateForm}
                                 onInput={handleInput}
@@ -117,6 +114,7 @@ function KindOfFood(props) {
                             <textarea
                                 id="description"
                                 name="description"
+                                value={kindOfFood.description || ""}
                                 onChange={handleChangeInput}
                                 onInput={handleInput}
                             />
@@ -134,4 +132,4 @@ function KindOfFood(props) {
     );
 }
 
-export default KindOfFood;
+export default FormKindOfFood;

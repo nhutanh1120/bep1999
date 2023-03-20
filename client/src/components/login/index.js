@@ -45,27 +45,26 @@ const validateForm = (element) => {
 const initialState = {
     username: "",
     password: "",
+    hiddenPassword: true,
     error: "",
 };
 function Login(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [hidden, setHidden] = useState(true);
-    const [user, setUser] = useState(initialState);
-    const { username, password, error } = user;
+    const [state, setState] = useState(initialState);
+    const { username, password, error } = state;
 
     useEffect(() => {
-        setUser(initialState);
-        setHidden(true);
+        setState(initialState);
     }, [props]);
 
     const handleChangeInput = (e) => {
         const { name, value } = e.target;
-        setUser({ ...user, [name]: value, error: "" });
+        setState({ ...state, [name]: value, error: "" });
     };
 
     const handleSubmit = async () => {
-        const elements = document.querySelectorAll(".login-form input");
+        const elements = document.querySelectorAll("#login input");
         let status = true;
         elements.forEach((element) => {
             const success = validateForm(element);
@@ -77,21 +76,20 @@ function Login(props) {
             try {
                 const res = await authAPI.login(username, password);
                 if (!res.data.status && !res.data.token) {
-                    setUser({
-                        ...user,
+                    setState({
+                        ...state,
                         error: Math.random(),
                     });
                 } else if (res.data.status) {
                     closeForm();
-                    setUser({ ...user, error: "" });
+                    setState({ ...state, error: "" });
                     localStorage.setItem("firstLogin", true);
                     dispatch(dispatchLogin());
                     navigate("/dashboard", { replace: true });
                 }
             } catch (error) {
-                console.log(error);
-                setUser({
-                    ...user,
+                setState({
+                    ...state,
                     error: Math.random(),
                 });
             }
@@ -108,7 +106,6 @@ function Login(props) {
         document.querySelector("#overlay").classList.remove("active");
         const elements = document.querySelectorAll(".form-container input");
         elements.forEach((element) => {
-            element.value = "";
             element.nextElementSibling.innerText = "";
             element.classList.remove("focus");
         });
@@ -120,7 +117,7 @@ function Login(props) {
         }
     }, [error]);
     return (
-        <div className={(props.display && "form login show") || "form login"}>
+        <div id="login" className={(props.display && "form login show") || "form login"}>
             <div className="form-close" onClick={closeForm}>
                 <i className="bx bx-x bx-md"></i>
             </div>
@@ -136,6 +133,7 @@ function Login(props) {
                                 type="text"
                                 id="username"
                                 name="username"
+                                value={state.username || ""}
                                 onChange={handleChangeInput}
                                 onBlur={validateForm}
                                 onInput={handleInput}
@@ -149,16 +147,20 @@ function Login(props) {
                         </div>
                         <div className="form-control">
                             <input
-                                type={hidden ? "password" : "text"}
+                                type={state.hiddenPassword ? "password" : "text"}
                                 id="password"
                                 name="password"
+                                value={state.password || ""}
                                 onChange={handleChangeInput}
                                 onBlur={validateForm}
                                 onInput={handleInput}
                             />
                             <span className="form-error"></span>
-                            <div className="hidden-password" onClick={() => setHidden(!hidden)}>
-                                <i className={hidden ? "bx bxs-lock" : "bx bxs-lock-open"}></i>
+                            <div
+                                className="hidden-password"
+                                onClick={() => setState({ ...state, hiddenPassword: !state.hiddenPassword })}
+                            >
+                                <i className={state.hiddenPassword ? "bx bxs-lock" : "bx bxs-lock-open"}></i>
                             </div>
                         </div>
                     </div>

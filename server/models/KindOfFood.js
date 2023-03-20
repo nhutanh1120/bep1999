@@ -9,7 +9,7 @@ class KindOfFood {
     }
 
     async save() {
-        const sql = `INSERT INTO kind_of_food(
+        const sql = `INSERT INTO kind_of_food (
                         name, 
                         description, 
                         isDeleted,

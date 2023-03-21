@@ -107,7 +107,8 @@ textarea {
     cursor: pointer;
 }
 
-.form-group .form-control input.focus {
+.form-group .form-control input.focus,
+select.focus {
     border-color: red;
 }
 

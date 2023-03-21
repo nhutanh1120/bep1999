@@ -12,3 +12,8 @@ export const isLength = (a, length) => {
     if (a.length < length) return true;
     return false;
 };
+
+export const isMax = (a, max) => {
+    if (parseInt(a) < max) return true;
+    return false;
+};

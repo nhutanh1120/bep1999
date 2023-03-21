@@ -1,7 +1,7 @@
 /* ======= Buttons ======== */
 
 /* Block */
-.btn--message {
+.btn-message {
     display: inline-block;
     text-decoration: none;
     background-color: transparent;
@@ -16,35 +16,35 @@
 }
 
 /* Modifier */
-.btn--size-l {
+.btn-size-l {
     padding: 16px 56px;
 }
 
-.btn--size-s {
+.btn-size-s {
     padding: 8px 32px;
 }
 
-.btn--message:hover {
+.btn-message:hover {
     opacity: 0.8;
 }
 
-.btn--message+.btn--message {
+.btn-message + .btn-message {
     margin-left: 16px;
 }
 
-.btn--success {
+.btn-success {
     background-color: #71be34;
 }
 
-.btn--warn {
+.btn-warn {
     background-color: #ffb702;
 }
 
-.btn--danger {
+.btn-danger {
     background-color: #ff623d;
 }
 
-.btn--disabled {
+.btn-disabled {
     opacity: 0.5 !important;
     cursor: default;
 }
@@ -55,7 +55,7 @@
     position: fixed;
     top: 32px;
     right: 32px;
-    z-index: 9999 !important;
+    z-index: 999 !important;
 }
 
 .toast {
@@ -89,78 +89,78 @@
     }
 }
 
-.toast--success {
+.toast-success {
     border-color: #47d864;
 }
 
-.toast--success .toast__icon {
+.toast-success .toast-icon {
     color: #47d864;
 }
 
-.toast--info {
+.toast-info {
     border-color: #2f86eb;
 }
 
-.toast--info .toast__icon {
+.toast-info .toast-icon {
     color: #2f86eb;
 }
 
-.toast--warning {
+.toast-warning {
     border-color: #ffc021;
 }
 
-.toast--warning .toast__icon {
+.toast-warning .toast-icon {
     color: #ffc021;
 }
 
-.toast--error {
+.toast-error {
     border-color: #ff623d;
 }
 
-.toast--error .toast__icon {
+.toast-error .toast-icon {
     color: #ff623d;
 }
 
-.toast+.toast {
+.toast + .toast {
     margin-top: 24px;
 }
 
-.toast__icon {
+.toast-icon {
     font-size: 24px;
 }
 
-.toast__icon,
-.toast__close {
+.toast-icon,
+.toast-close {
     padding: 0 16px;
 }
 
-.toast__body {
+.toast-body {
     flex-grow: 1;
 }
 
-.toast__title {
+.toast-title {
     font-size: 16px;
     font-weight: 600;
     color: #333;
 }
 
-.toast__msg {
+.toast-msg {
     font-size: 14px;
     color: #888;
     margin-top: 6px;
     line-height: 1.5;
 }
 
-.toast__close {
+.toast-close {
     font-size: 20px;
     color: rgba(0, 0, 0, 0.3);
     cursor: pointer;
 }
 
-.toast__close i {
+.toast-close i {
     border-radius: 50%;
 }
 
-.toast__close i:hover {
+.toast-close i:hover {
     background-color: rgba(0, 0, 15, 0.1);
 }

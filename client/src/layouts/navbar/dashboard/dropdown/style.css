@@ -1,10 +1,9 @@
 .dropdown {
     position: relative;
-    z-index: 10;
 }
 
-.dropdown button {
-    cursor: pointer;
+.dropdown a {
+    text-decoration: none;
 }
 
 .dropdown-toggle {
@@ -12,6 +11,7 @@
     outline: none;
     background-color: transparent;
     position: relative;
+    cursor: pointer;
 }
 
 .dropdown-toggle i {
@@ -59,4 +59,14 @@
 .dropdown-footer {
     padding: 10px 0 0;
     text-align: center;
+}
+
+.dropdown .outside {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background-color: transparent;
 }

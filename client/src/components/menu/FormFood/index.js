@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { showSuccessToast, showErrorToast } from "./../../utils/notification/message";
-import { isEmpty } from "./../../utils/validation/validation";
+import { isEmpty, isLength, isMax } from "./../../utils/validation/validation";
 import { KIND_OF_FOOD_EMPTY } from "./../../../constants/message";
 import { useDispatch, useSelector } from "react-redux";
 import menuAPI from "./../../../api/menuAPI";
@@ -9,7 +9,7 @@ import "./../../../assets/css/form.css";
 import "./style.css";
 
 const renderMessageError = (id, message) => {
-    const element = document.querySelector(`#${id}`);
+    const element = document.querySelector(id);
     element.classList.add("focus");
     element.nextElementSibling.innerText = message;
 };
@@ -44,22 +44,38 @@ function FormFood(props) {
     };
 
     const handleSubmit = async () => {
-        const element = document.querySelector("#fName");
-        if (isEmpty(element.value)) {
-            renderMessageError(element.id, KIND_OF_FOOD_EMPTY);
-            return;
+        let status = true;
+        if (isEmpty(food.kofId)) {
+            renderMessageError("#kofId", KIND_OF_FOOD_EMPTY);
+            status = false;
         }
-        try {
-            const res = await menuAPI.createFood(token, food);
-            if (res.data.status) {
-                dispatch(dispatchCreateFood(res.data));
-                showSuccessToast(`Món ăn '${food.fName}' thêm mới thành công.`);
+        if (isEmpty(food.fName)) {
+            renderMessageError("#fName", KIND_OF_FOOD_EMPTY);
+            status = false;
+        } else if (isLength(food.fName, 5)) {
+            renderMessageError("#fName", KIND_OF_FOOD_EMPTY);
+            status = false;
+        }
+        if (isEmpty(food.fPrice)) {
+            renderMessageError("#fPrice", KIND_OF_FOOD_EMPTY);
+            status = false;
+        } else if (isMax(food.fPrice, 999)) {
+            renderMessageError("#fPrice", KIND_OF_FOOD_EMPTY);
+            status = false;
+        }
+        if (status) {
+            try {
+                const res = await menuAPI.createFood(token, food);
+                if (res.data.status) {
+                    dispatch(dispatchCreateFood(res.data));
+                    showSuccessToast(`Món ăn '${food.fName}' thêm mới thành công.`);
+                }
+            } catch (error) {
+                setFood({
+                    ...food,
+                    error: Math.random(),
+                });
             }
-        } catch (error) {
-            setFood({
-                ...food,
-                error: Math.random(),
-            });
         }
     };
 
@@ -71,11 +87,11 @@ function FormFood(props) {
     const closeForm = () => {
         props.toggleDisplay(null);
         document.querySelector("#overlay").classList.remove("active");
-        const elements = document.querySelectorAll(".form-container input");
-        elements.forEach((element) => {
-            element.value = "";
-            element.nextElementSibling.innerText = "";
-            element.classList.remove("focus");
+        const lstElements = ["#kofId", "#fName", "#fPrice"];
+        lstElements.forEach((id) => {
+            const elm = document.querySelector(id);
+            elm.nextElementSibling.innerText = "";
+            elm.classList.remove("focus");
         });
     };
 
@@ -130,7 +146,7 @@ function FormFood(props) {
                         </div>
                         <div className="form-control">
                             <input
-                                type="text"
+                                type="number"
                                 id="fPrice"
                                 name="fPrice"
                                 onChange={handleChangeInput}

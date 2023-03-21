@@ -93,7 +93,7 @@ const ThemeMenu = () => {
     }, []);
 
     return (
-        <div>
+        <div className="dashboard-theme">
             <button ref={menu_toggle_ref} className="dropdown-toggle" onClick={() => setActiveMenu()}>
                 <i className="bx bx-cog bx-spin-hover"></i>
             </button>

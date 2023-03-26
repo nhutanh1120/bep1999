@@ -9,7 +9,7 @@ class Table {
     }
 
     async save() {
-        const sql = `INSERT INTO table (
+        const sql = `INSERT INTO tables (
                         name, 
                         status, 
                         isDeleted,
@@ -22,20 +22,65 @@ class Table {
     }
 
     static findAll() {
-        const sql = "SELECT * FROM table";
+        const sql = `SELECT tables.id as tId, 
+                            tables.name as tName, 
+                            tables.status as tStatus, 
+                            tables.isDeleted as tIsDeleted, 
+                            tables.createdAt as tCreatedAt, 
+                            tables.updatedAt as tUpdatedAt
+                    FROM tables
+                    WHERE isDeleted = 0`;
         return db.execute(sql);
     }
 
     static findOneById(id) {
-        const sql = `SELECT table.id as tId, 
-                            table.name as tName, 
-                            table.status as tStatus, 
-                            table.isDeleted as tIsDeleted, 
-                            table.createdAt as tCreatedAt, 
-                            table.updatedAt as tUpdatedAt
-	                FROM table
+        const sql = `SELECT tables.id as tId, 
+                            tables.name as tName, 
+                            tables.status as tStatus, 
+                            tables.isDeleted as tIsDeleted, 
+                            tables.createdAt as tCreatedAt, 
+                            tables.updatedAt as tUpdatedAt
+	                FROM tables
+                    AND isDeleted = 0
 	                WHERE id = ?`;
         return db.execute(sql, [id]);
+    }
+
+    static insertMany(arrParam) {
+        let sql = `INSERT INTO tables (
+                        name, 
+                        status, 
+                        isDeleted, 
+                        createdAt, 
+                        updatedAt
+                    )
+                    VALUES`;
+        for (const name of arrParam) {
+            sql = `${sql} (?, 0, 0, NOW(), NOW()),`;
+        }
+        return db.execute(sql.slice(0, sql.length - 1), arrParam);
+    }
+
+    static findManyById(id, fieldCount) {
+        const sql = `SELECT tables.id as tId, 
+                            tables.name as tName, 
+                            tables.status as tStatus, 
+                            tables.isDeleted as tIsDeleted, 
+                            tables.createdAt as tCreatedAt, 
+                            tables.updatedAt as tUpdatedAt
+	                FROM tables
+	                WHERE id >= ?
+                    AND isDeleted = 0
+                    ORDER BY id 
+                    LIMIT ?`;
+        return db.execute(sql, [id, fieldCount]);
+    }
+
+    static findLargestNameById() {
+        const sql = `SELECT MAX(CAST(name AS INT)) AS max
+                    FROM TABLES
+                    WHERE isDeleted = 0`;
+        return db.execute(sql);
     }
 }
 

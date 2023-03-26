@@ -59,9 +59,9 @@ const menuControllers = {
                     message: "Please fill in all fields.",
                 });
             }
-            let newKindOfFood = new KindOfFood({ name, description });
-            [newKindOfFood, _] = await newKindOfFood.save();
-            [newKindOfFood, _] = await KindOfFood.findOneById(newKindOfFood.insertId);
+            const objKindOfFood = new KindOfFood({ name, description });
+            const [resultField] = await objKindOfFood.save();
+            const [newKindOfFood, _] = await KindOfFood.findOneById(resultField.insertId);
             res.json({
                 status: true,
                 message: "Kind of food create successfully.",
@@ -83,9 +83,9 @@ const menuControllers = {
                     message: "Please fill in all fields.",
                 });
             }
-            let newFood = new Food({ kofId, fName, fPrice, fDescription });
-            [newFood, _] = await newFood.save();
-            [newFood, _] = await Food.findOneById(newFood.insertId);
+            const objFood = new Food({ kofId, fName, fPrice, fDescription });
+            const [resultField] = await objFood.save();
+            const [newFood, _] = await Food.findOneById(resultField.insertId);
             res.json({
                 status: true,
                 message: "Food create successfully.",

@@ -1,14 +1,16 @@
 import "./App.css";
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { publicRoutes } from "./routes";
+import { publicRoutes, privateRoutes } from "./routes";
 import { useDispatch, useSelector } from "react-redux";
 import { dispatchLogin, dispatchGetUser } from "./redux/actions/authAction";
 import DefaultLayout from "./layouts";
 import authAPI from "./api/authAPI";
+import NotFound from "./pages/notfound";
 import "./assets/css/theme.css";
 
 function App() {
+    const [state, setState] = useState(null);
     const dispatch = useDispatch();
     const token = useSelector((state) => state.token);
     const isLogged = useSelector((state) => state.auth.isLogged);
@@ -26,6 +28,7 @@ function App() {
                     dispatch(dispatchLogin());
                     return authAPI.fetchUserByToken(token).then((res) => {
                         dispatch(dispatchGetUser(res));
+                        setState(res.data.user[0]);
                     });
                 };
                 getUser();
@@ -53,6 +56,29 @@ function App() {
                                 <Layout>
                                     <Page />
                                 </Layout>
+                            }
+                        />
+                    );
+                })}
+                {privateRoutes.map((route, index) => {
+                    const Page = route.component;
+                    let Layout = DefaultLayout;
+
+                    if (route.layout) {
+                        Layout = route.layout;
+                    }
+                    return (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={
+                                isLogged && state ? (
+                                    <Layout user={state}>
+                                        <Page />
+                                    </Layout>
+                                ) : (
+                                    <NotFound />
+                                )
                             }
                         />
                     );

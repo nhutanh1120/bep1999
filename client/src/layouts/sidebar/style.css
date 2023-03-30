@@ -87,13 +87,22 @@
     margin: 0;
 }
 
-.sidebar .sidebar-list {
+.sidebar .sidebar-content {
     height: calc(100% - 180px);
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
-::-webkit-scrollbar {
+.sidebar .sidebar-content:hover {
+    width: 280px;
+}
+
+.sidebar .sidebar-content::-webkit-scrollbar {
     display: none;
+}
+
+.sidebar .sidebar-list {
+    width: 50px;
+    height: calc(100% - 180px);
 }
 
 .sidebar li {

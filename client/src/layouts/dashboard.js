@@ -7,9 +7,10 @@ import ScrollTop from "./scrollTop";
 import kindOfFoodAPI from "./../api/menuAPI";
 import { dispatchFindAllMenu } from "./../redux/actions/menuAction";
 import { useDispatch } from "react-redux";
+import "./../assets/css/grid.css";
 import "./../assets/css/layoutDashboard.css";
 
-function DashBoardLayout({ children }) {
+function DashBoardLayout({ user, children }) {
     const dispatch = useDispatch();
     useEffect(() => {
         if (dispatch) {
@@ -23,10 +24,10 @@ function DashBoardLayout({ children }) {
     }, [dispatch]);
     return (
         <div className="App">
-            <Sidebar />
+            <Sidebar user={user} />
             <article className="Container">
                 <header className="Container-header">
-                    <Navbar userMenu={menu} />
+                    <Navbar user={user} userMenu={menu} />
                 </header>
                 <section className="Container-section">{children}</section>
                 <footer className="App-footer">

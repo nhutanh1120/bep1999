@@ -1,7 +1,6 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { handleLogout } from "./../../sidebar/logout/handleLogout";
 import Dropdown from "./dropdown";
 import ThemeMenu from "./theme";
@@ -52,7 +51,7 @@ const menuBtnChange = (elmA, elmB) => {
     }
 };
 
-const Navbar = ({ userMenu }) => {
+const Navbar = ({ user, userMenu }) => {
     useEffect(() => {
         const sidebar = document.querySelector(".sidebar");
         const closeBtn = document.querySelector(".dashboard-mobile");
@@ -70,9 +69,6 @@ const Navbar = ({ userMenu }) => {
 
     const [filter, setFilter] = useState([]);
 
-    const auth = useSelector((state) => state.auth);
-    const { user, role } = auth;
-
     const curr_user = {
         displayName: `${user.surname} ${user.forename}`,
         image: user.avatar,
@@ -83,8 +79,8 @@ const Navbar = ({ userMenu }) => {
         <div className="navbar">
             <div className="navbar-title">
                 <h1>
-                    <i className={role === 1 ? "bx bx-star bx-sm" : "bx bx-user"}></i>
-                    &nbsp;{role === 1 ? "quản lý" : "nhân viên"}
+                    <i className={user.role === 1 ? "bx bx-star bx-sm" : "bx bx-user"}></i>
+                    &nbsp;{user.role === 1 ? "quản lý" : "nhân viên"}
                 </h1>
             </div>
             <div className="dashboard-mobile">

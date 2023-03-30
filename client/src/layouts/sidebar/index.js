@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import sidebarCurrent from "./../../assets/json/sidebar.json";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Logout from "./logout/index";
 import "./style.css";
@@ -13,9 +12,7 @@ const menuBtnChange = (elmA, elmB) => {
     }
 };
 
-const Sidebar = () => {
-    const auth = useSelector((state) => state.auth);
-    const { user, role } = auth;
+const Sidebar = ({ user }) => {
     useEffect(() => {
         const sidebar = document.querySelector(".sidebar");
         const closeBtn = document.querySelector("#logo-close");
@@ -50,20 +47,22 @@ const Sidebar = () => {
                     <span className="tooltip">Tìm kiếm</span>
                 </li>
             </ul>
-            <ul className="sidebar-list">
-                {sidebarCurrent.map((item, index) => (
-                    <li key={index}>
-                        <Link to={item.link}>
-                            <i className={item.icon}></i>
-                            <span className="sidebar-name">{item.title}</span>
-                        </Link>
-                        <span className="tooltip">{item.title}</span>
-                    </li>
-                ))}
-            </ul>
+            <div className="sidebar-content">
+                <ul className="sidebar-list">
+                    {sidebarCurrent.map((item, index) => (
+                        <li key={index}>
+                            <Link to={item.link}>
+                                <i className={item.icon}></i>
+                                <span className="sidebar-name">{item.title}</span>
+                            </Link>
+                            <span className="tooltip">{item.title}</span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
             <Logout
                 staffName={`${user?.surname || null} ${user?.forename || null}`}
-                permission={role !== 0 ? "quản lý" : "nhân viên"}
+                permission={user?.role !== 0 ? "quản lý" : "nhân viên"}
                 avatar={user?.avatar}
             />
         </div>

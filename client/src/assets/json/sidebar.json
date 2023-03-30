@@ -10,6 +10,11 @@
         "title": "Bảng điều khiển"
     },
     {
+        "link": "/dashboard/table",
+        "icon": "bx bx-table",
+        "title": "Bàn"
+    },
+    {
         "link": "/dashboard/customer",
         "icon": "bx bx-user",
         "title": "Người dùng"
@@ -26,7 +31,7 @@
     },
     {
         "link": "/dashboard/menu",
-        "icon": "bx bxs-widget",
+        "icon": "bx bxl-audible",
         "title": "Thực đơn"
     },
     {

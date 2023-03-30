@@ -1,0 +1,29 @@
+.list-table {
+    width: 75%;
+}
+
+.list-table .tables {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 150px;
+    height: 100px;
+    margin: 0 20px 20px 0;
+    background-color: var(--second-background);
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+}
+
+.list-table .tables h5 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.list-table .tables p {
+    text-transform: capitalize;
+    font-size: 13px;
+    color: var(--third-color);
+}

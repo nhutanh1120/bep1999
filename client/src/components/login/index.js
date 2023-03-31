@@ -46,13 +46,12 @@ const initialState = {
     username: "",
     password: "",
     hiddenPassword: true,
-    error: "",
 };
 function Login(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [state, setState] = useState(initialState);
-    const { username, password, error } = state;
+    const { username, password } = state;
 
     useEffect(() => {
         setState(initialState);
@@ -60,7 +59,7 @@ function Login(props) {
 
     const handleChangeInput = (e) => {
         const { name, value } = e.target;
-        setState({ ...state, [name]: value, error: "" });
+        setState({ ...state, [name]: value });
     };
 
     const handleSubmit = async () => {
@@ -76,22 +75,16 @@ function Login(props) {
             try {
                 const res = await authAPI.login(username, password);
                 if (!res.data.status && !res.data.token) {
-                    setState({
-                        ...state,
-                        error: Math.random(),
-                    });
+                    showErrorToast("Tài khoản hoặc mật khẩu không chính xác.");
                 } else if (res.data.status) {
                     closeForm();
-                    setState({ ...state, error: "" });
+                    setState({ ...state });
                     localStorage.setItem("firstLogin", true);
                     dispatch(dispatchLogin());
                     navigate("/dashboard", { replace: true });
                 }
             } catch (error) {
-                setState({
-                    ...state,
-                    error: Math.random(),
-                });
+                showErrorToast("Lỗi hệ thống, vui lòng thử lại sau.");
             }
         }
     };
@@ -111,11 +104,6 @@ function Login(props) {
         });
     };
 
-    useEffect(() => {
-        if (error) {
-            showErrorToast("Tài khoản hoặc mật khẩu không chính xác.");
-        }
-    }, [error]);
     return (
         <div id="login" className={(props.display && "form login show") || "form login"}>
             <div className="form-close" onClick={closeForm}>

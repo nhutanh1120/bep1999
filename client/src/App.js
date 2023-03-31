@@ -3,7 +3,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { publicRoutes, privateRoutes } from "./routes";
 import { useDispatch, useSelector } from "react-redux";
-import { dispatchLogin, dispatchGetUser } from "./redux/actions/authAction";
+import { dispatchLogin } from "./redux/actions/authAction";
 import DefaultLayout from "./layouts";
 import authAPI from "./api/authAPI";
 import NotFound from "./pages/notfound";
@@ -27,7 +27,6 @@ function App() {
                 const getUser = () => {
                     dispatch(dispatchLogin());
                     return authAPI.fetchUserByToken(token).then((res) => {
-                        dispatch(dispatchGetUser(res));
                         setState(res.data.user[0]);
                     });
                 };

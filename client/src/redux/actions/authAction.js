@@ -11,12 +11,3 @@ export const dispatchLogout = () => {
         type: ACTIONS.LOGOUT,
     };
 };
-
-export const dispatchGetUser = (userInfo) => {
-    return {
-        type: ACTIONS.GET_USER,
-        payload: {
-            user: userInfo.data.user,
-        },
-    };
-};

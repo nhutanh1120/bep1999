@@ -25,14 +25,12 @@ const initialState = {
     fName: "",
     fPrice: "",
     fDescription: "",
-    error: "",
 };
 function FormFood(props) {
     const lstMenu = useSelector((state) => state.menu);
     const token = useSelector((state) => state.token);
     const dispatch = useDispatch();
     const [food, setFood] = useState(initialState);
-    const { error } = food;
 
     useEffect(() => {
         setFood(initialState);
@@ -40,7 +38,7 @@ function FormFood(props) {
 
     const handleChangeInput = (e) => {
         const { name, value } = e.target;
-        setFood({ ...food, [name]: value, error: "" });
+        setFood({ ...food, [name]: value });
     };
 
     const handleSubmit = async () => {
@@ -71,10 +69,7 @@ function FormFood(props) {
                     showSuccessToast(`Món ăn '${food.fName}' thêm mới thành công.`);
                 }
             } catch (error) {
-                setFood({
-                    ...food,
-                    error: Math.random(),
-                });
+                showErrorToast("Lỗi hệ thống, không tạo được món ăn.");
             }
         }
     };
@@ -95,11 +90,6 @@ function FormFood(props) {
         });
     };
 
-    useEffect(() => {
-        if (error) {
-            showErrorToast("Lỗi hệ thống, không tạo được món ăn.");
-        }
-    }, [error]);
     return (
         <div className={(props.display === "food" && "form food show") || "form food"}>
             <div className="form-close" onClick={closeForm}>

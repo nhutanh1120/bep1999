@@ -23,13 +23,11 @@ const validateForm = (element) => {
 const initialState = {
     name: "",
     description: "",
-    error: "",
 };
 function FormKindOfFood(props) {
     const token = useSelector((state) => state.token);
     const dispatch = useDispatch();
     const [kindOfFood, setKindOfFood] = useState(initialState);
-    const { error } = kindOfFood;
 
     useEffect(() => {
         setKindOfFood(initialState);
@@ -37,7 +35,7 @@ function FormKindOfFood(props) {
 
     const handleChangeInput = (e) => {
         const { name, value } = e.target;
-        setKindOfFood({ ...kindOfFood, [name]: value, error: "" });
+        setKindOfFood({ ...kindOfFood, [name]: value });
     };
 
     const handleSubmit = async () => {
@@ -59,10 +57,7 @@ function FormKindOfFood(props) {
                 showSuccessToast(`Loại món ăn '${kindOfFood.name}' thêm mới thành công.`);
             }
         } catch (error) {
-            setKindOfFood({
-                ...kindOfFood,
-                error: Math.random(),
-            });
+            showErrorToast("Lỗi hệ thống, không tạo được loại món ăn.");
         }
     };
 
@@ -75,12 +70,6 @@ function FormKindOfFood(props) {
         props.toggleDisplay(null);
         document.querySelector("#overlay").classList.remove("active");
     };
-
-    useEffect(() => {
-        if (error) {
-            showErrorToast("Lỗi hệ thống, không tạo được loại món ăn.");
-        }
-    }, [error]);
     return (
         <div className={(props.display === "kind" && "form kind-of-food show") || "form kind-of-food"}>
             <div className="form-close" onClick={closeForm}>

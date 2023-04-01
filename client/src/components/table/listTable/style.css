@@ -19,6 +19,7 @@
 .list-table .tables h5 {
     font-size: 18px;
     font-weight: 800;
+    text-transform: capitalize;
     color: var(--primary-color);
 }
 

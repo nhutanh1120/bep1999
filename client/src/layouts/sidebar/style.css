@@ -105,6 +105,10 @@
     height: calc(100% - 180px);
 }
 
+.sidebar.open .sidebar-list {
+    width: 222px;
+}
+
 .sidebar li {
     position: relative;
     margin: 8px 0;
@@ -152,7 +156,7 @@
     border: none;
     border-radius: 12px;
     transition: all 0.5s ease;
-    background: var(--third-background);
+    background: var(--primary-background);
 }
 
 .sidebar.open input {
@@ -166,12 +170,13 @@
     left: 0;
     transform: translateY(-50%);
     font-size: 22px;
-    background: var(--third-background);
+    background: var(--primary-background);
     color: var(--primary-color);
+    cursor: pointer;
 }
 
 .sidebar.open .bx-search:hover {
-    background: var(--third-background);
+    background: var(--primary-background);
     color: var(--primary-color);
 }
 

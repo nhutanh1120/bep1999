@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { isEmpty } from "./../../utils/validation/validation";
-import { TABLES_EMPTY } from "./../../../constants/message";
+import { TABLES_EMPTY, TABLES_QUICKLY_EMPTY } from "./../../../constants/message";
 import { showSuccessToast, showErrorToast } from "./../../utils/notification/message";
 import tablesAPI from "./../../../api/tablesAPI";
 import "./style.css";
 
-function CreateTable() {
+function CreateTable({ requestCreateTable }) {
     const token = useSelector((state) => state.token);
     const [state, setState] = useState("");
-    const [isCreated, setIsCreated] = useState(true);
+    const [type, setType] = useState(true);
 
     const handleChange = (e) => {
         setState(e.target.value);
@@ -29,22 +29,28 @@ function CreateTable() {
     };
 
     const handleClick = (e) => {
+        const element = document.querySelector("#tName");
         document.querySelector(".form-title.active").classList.remove("active");
         e.target.classList.add("active");
+        element.classList.remove("focus");
+        element.nextElementSibling.innerText = "";
         setState("");
-        setIsCreated(!isCreated);
+        setType(!type);
     };
 
     const handleSubmit = async () => {
         if (isEmpty(state)) {
             const element = document.querySelector("#tName");
             element.classList.add("focus");
-            element.nextElementSibling.innerText = TABLES_EMPTY;
+            element.nextElementSibling.innerText = type ? TABLES_EMPTY : TABLES_QUICKLY_EMPTY;
         } else {
             try {
-                const res = await tablesAPI.create(token, state);
+                const res = type ? await tablesAPI.create(token, state) : await tablesAPI.quicklyCreate(token, state);
                 if (res.data.status) {
-                    showSuccessToast(`Bàn '${state}' thêm mới thành công.`);
+                    const message = type ? `Bàn ${state} thêm mới thành công.` : `Đã thêm mới ${state} bàn thành công.`;
+                    showSuccessToast(message);
+                    requestCreateTable(res.data.lstTables);
+                    setState("");
                 }
             } catch (error) {
                 showErrorToast("Lỗi hệ thống, không tạo được bàn mới.");
@@ -66,17 +72,18 @@ function CreateTable() {
                 <div className="form-content">
                     <div className="form-group">
                         <div className="form-label">
-                            <label htmlFor="tName">{isCreated ? "Tên bàn" : "Số lượng bàn"}:</label>
+                            <label htmlFor="tName">{type ? "Tên bàn" : "Số lượng bàn"}:</label>
                         </div>
                         <div className="form-control">
                             <input
-                                type={isCreated ? "text" : "number"}
+                                type={type ? "text" : "number"}
                                 id="tName"
                                 name="tName"
                                 value={state || ""}
                                 onChange={handleChange}
                                 onBlur={validateForm}
                                 onInput={handleInput}
+                                min={type ? "" : 1}
                             />
                             <span className="form-error"></span>
                         </div>

@@ -41,8 +41,8 @@ class Table {
                             tables.createdAt as tCreatedAt, 
                             tables.updatedAt as tUpdatedAt
 	                FROM tables
-                    AND isDeleted = 0
-	                WHERE id = ?`;
+	                WHERE id = ?
+                    AND isDeleted = 0`;
         return db.execute(sql, [id]);
     }
 

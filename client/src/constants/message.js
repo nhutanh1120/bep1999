@@ -9,3 +9,4 @@ export const KIND_OF_FOOD_MAX_LENGTH = "Tên loại món ăn phải trên 5 ký 
 
 // Tables
 export const TABLES_EMPTY = "Vui lòng nhập tên bàn.";
+export const TABLES_QUICKLY_EMPTY = "Vui lòng nhập số bàn.";

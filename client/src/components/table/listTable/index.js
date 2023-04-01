@@ -1,24 +1,12 @@
-import React, { useState, useEffect } from "react";
-import tablesAPI from "./../../../api/tablesAPI";
+import React from "react";
 import "./style.css";
+import Table from "./table";
 
-function ListTable() {
-    const [state, setState] = useState([]);
-    useEffect(() => {
-        (async () => {
-            const response = await tablesAPI.findAll();
-            setState(response.data.lstTables);
-        })();
-    }, []);
+function ListTable({ listTable, setOpenDetail }) {
     return (
         <div className="list-table row">
-            {state.length !== 0 &&
-                state.map((table, index) => (
-                    <div key={index} className="tables col l-2">
-                        <h5>{`B.${table.tName}`}</h5>
-                        <p>{table.tStatus === 0 && "trống"}</p>
-                    </div>
-                ))}
+            {listTable.length !== 0 &&
+                listTable.map((table, index) => <Table key={index} data={table} setOpenDetail={setOpenDetail} />)}
             <div className="tables col l-2">
                 <h5>
                     <i className="bx bx-plus"></i>

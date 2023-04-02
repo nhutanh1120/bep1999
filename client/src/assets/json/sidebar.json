@@ -2,51 +2,51 @@
     {
         "link": "/",
         "icon": "bx bx-home",
-        "title": "Trang chủ"
+        "title": "trang chủ"
     },
     {
         "link": "/dashboard",
         "icon": "bx bx-grid-alt",
-        "title": "Bảng điều khiển"
+        "title": "bảng điều khiển"
     },
     {
         "link": "/dashboard/table",
         "icon": "bx bx-table",
-        "title": "Bàn"
+        "title": "bàn"
     },
     {
         "link": "/dashboard/customer",
         "icon": "bx bx-user",
-        "title": "Người dùng"
+        "title": "người dùng"
     },
     {
         "link": "/dashboard/product",
         "icon": "bx bx-basket",
-        "title": "Doanh thu"
+        "title": "doanh thu"
     },
     {
         "link": "/dashboard/message",
         "icon": "bx bx-chat",
-        "title": "Tin nhắn"
+        "title": "tin nhắn"
     },
     {
         "link": "/dashboard/menu",
         "icon": "bx bxl-audible",
-        "title": "Thực đơn"
+        "title": "thực đơn"
     },
     {
         "link": "/dashboard/post",
         "icon": "bx bx-message-square-edit",
-        "title": "Tin tức"
+        "title": "tin tức"
     },
     {
         "link": "/dashboard/email",
         "icon": "bx bx-mail-send",
-        "title": "Gửi mail"
+        "title": "gửi mail"
     },
     {
         "link": "/dashboard/setting",
         "icon": "bx bx-cog",
-        "title": "Cài đặt"
+        "title": "cài đặt"
     }
 ]

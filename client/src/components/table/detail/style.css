@@ -56,3 +56,11 @@
 .tables-detail .icon-close i {
     color: #fff;
 }
+
+@media (max-width: 450px) {
+    .tables-detail .detail-container {
+        left: 0;
+        width: 100%;
+        border-radius: 0;
+    }
+}

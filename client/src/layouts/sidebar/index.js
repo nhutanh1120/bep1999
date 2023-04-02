@@ -44,7 +44,7 @@ const Sidebar = ({ user }) => {
                 <li>
                     <i className="bx bx-search"></i>
                     <input type="text" placeholder="Tìm kiếm..." />
-                    <span className="tooltip">Tìm kiếm</span>
+                    <span className="tooltip">tìm kiếm</span>
                 </li>
             </ul>
             <div className="sidebar-content">

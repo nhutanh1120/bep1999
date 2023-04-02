@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { showSuccessToast, showErrorToast } from "./../../utils/notification/message";
-import { isEmpty, isLength } from "./../../utils/validation/validation";
-import { KIND_OF_FOOD_EMPTY, KIND_OF_FOOD_MAX_LENGTH } from "./../../../constants/message";
+import { isEmpty } from "./../../utils/validation/validation";
+import { KIND_OF_FOOD_EMPTY } from "./../../../constants/message";
 import { useDispatch, useSelector } from "react-redux";
 import menuAPI from "./../../../api/menuAPI";
 import { dispatchCreateKindOfFood } from "./../../../redux/actions/menuAction";
@@ -42,9 +42,6 @@ function FormKindOfFood(props) {
         const element = document.querySelector("#name");
         if (isEmpty(element.value)) {
             renderMessageError(element.id, KIND_OF_FOOD_EMPTY);
-            return;
-        } else if (isLength(element.value, 5)) {
-            renderMessageError(element.id, KIND_OF_FOOD_MAX_LENGTH);
             return;
         }
         try {

@@ -8,6 +8,7 @@ import "./../assets/css/tables.css";
 function Tables() {
     const [listTable, setListTable] = useState([]);
     const [openDetail, setOpenDetail] = useState(null);
+    const [openCreate, setOpenCreate] = useState(null);
     useEffect(() => {
         (async () => {
             const response = await tablesAPI.findAll();
@@ -19,13 +20,13 @@ function Tables() {
         setListTable((current) => [...current, ...lstTable]);
     };
     return (
-        <div className="tables">
+        <div className="tables-page">
             <div className="tables-container">
-                <ListTable listTable={listTable} setOpenDetail={setOpenDetail} />
+                <ListTable listTable={listTable} setOpenCreate={setOpenCreate} setOpenDetail={setOpenDetail} />
             </div>
             <div className="tables-aside">
                 <div className="tables-create">
-                    <CreateTable requestCreateTable={requestCreateTable} />
+                    <CreateTable requestCreateTable={requestCreateTable} open={openCreate} />
                 </div>
                 <div className="tables-detail">
                     <TableDetail open={openDetail} />

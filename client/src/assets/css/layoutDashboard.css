@@ -36,4 +36,8 @@
         width: 100% !important;
         left: 0 !important;
     }
+
+    .Container-section {
+        padding: 10px;
+    }
 }

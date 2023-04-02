@@ -7,7 +7,7 @@ const renderContent = (food, key) => {
     return (
         <tr key={key}>
             <td>{key + 1}</td>
-            <td>{food.fName}</td>
+            <td className="food-name">{food.fName}</td>
             <td className="price">{formatNumber(food.fPrice)}&nbsp;vnd</td>
             <td>{moment(food.fUpdatedAt).format("DD.MM.YYYY")}</td>
             <td>{food.fDescription || "-"}</td>
@@ -31,7 +31,7 @@ function MenuBox(props) {
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Tên món</th>
+                                            <th className="food-name">Tên món</th>
                                             <th>giá</th>
                                             <th>ngày cập nhật</th>
                                             <th>mô tả</th>

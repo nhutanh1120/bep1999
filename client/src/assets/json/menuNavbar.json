@@ -1,19 +1,19 @@
 [
     {
         "link": "/",
-        "title": "Trang chủ"
+        "title": "trang chủ"
     },
     {
         "link": "/menu",
-        "title": "Thực đơn"
+        "title": "thực đơn"
     },
     {
         "link": "/posts",
-        "title": "Tin tức"
+        "title": "tin tức"
     },
     {
         "link": "/sales",
-        "title": "Khuyến mãi"
+        "title": "khuyến mãi"
     },
     {
         "link": "/contact",

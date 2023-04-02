@@ -28,3 +28,26 @@
     font-size: 13px;
     color: var(--third-color);
 }
+
+@media (max-width: 1024px) and (min-width: 740px) {
+    .list-table .tables {
+        width: 145px;
+    }
+}
+
+@media (max-width: 450px) {
+    .list-table {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 375px) {
+    .list-table .tables {
+        width: 90px;
+    }
+
+    .list-table .tables {
+        margin: 0 10px 10px 0;
+    }
+}

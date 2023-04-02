@@ -1,4 +1,4 @@
-.tables {
+.tables-page {
     display: flex;
     justify-content: center;
     padding-left: 12px;
@@ -10,4 +10,26 @@
 
 .tables-aside {
     width: 25%;
+}
+
+@media (max-width: 900px) {
+    .tables-container {
+        width: 65%;
+    }
+
+    .tables-aside {
+        width: 35%;
+    }
+}
+
+@media (max-width: 450px) {
+    .tables-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .tables-aside {
+        position: fixed;
+    }
 }

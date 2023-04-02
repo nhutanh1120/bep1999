@@ -13,6 +13,10 @@ select {
     height: 30px;
 }
 
+.form.food .form-control select {
+    text-transform: capitalize;
+}
+
 .form.food .form-control textarea {
     height: 70px;
     text-transform: capitalize;

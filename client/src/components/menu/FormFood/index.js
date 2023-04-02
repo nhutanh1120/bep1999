@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { showSuccessToast, showErrorToast } from "./../../utils/notification/message";
-import { isEmpty, isLength, isMax } from "./../../utils/validation/validation";
-import { KIND_OF_FOOD_EMPTY } from "./../../../constants/message";
+import { isEmpty, isMax } from "./../../utils/validation/validation";
+import { KIND_OF_FOOD_SELECT, FOOD_EMPTY, FOOD_PRICE_EMPTY, FOOD_PRICE_MIN } from "./../../../constants/message";
 import { useDispatch, useSelector } from "react-redux";
 import menuAPI from "./../../../api/menuAPI";
 import { dispatchCreateFood } from "./../../../redux/actions/menuAction";
@@ -9,14 +9,22 @@ import "./../../../assets/css/form.css";
 import "./style.css";
 
 const renderMessageError = (id, message) => {
-    const element = document.querySelector(id);
+    const element = document.querySelector(`#${id}`);
     element.classList.add("focus");
     element.nextElementSibling.innerText = message;
 };
 
 const validateForm = (element) => {
-    if (isEmpty(element.target.value)) {
-        renderMessageError(element.target.id, KIND_OF_FOOD_EMPTY);
+    if (element.target.id === "kofId" && isEmpty(element.target.value)) {
+        renderMessageError("kofId", KIND_OF_FOOD_SELECT);
+    }
+    if (element.target.id === "fName" && isEmpty(element.target.value)) {
+        renderMessageError("fName", FOOD_EMPTY);
+    }
+    if (element.target.id === "fPrice" && isEmpty(element.target.value)) {
+        renderMessageError("fPrice", FOOD_PRICE_EMPTY);
+    } else if (element.target.id === "fPrice" && isMax(element.target.value, 999)) {
+        renderMessageError("fPrice", FOOD_PRICE_MIN);
     }
 };
 
@@ -36,7 +44,7 @@ function FormFood(props) {
         setFood(initialState);
     }, [props]);
 
-    const handleChangeInput = (e) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
         setFood({ ...food, [name]: value });
     };
@@ -44,21 +52,18 @@ function FormFood(props) {
     const handleSubmit = async () => {
         let status = true;
         if (isEmpty(food.kofId)) {
-            renderMessageError("#kofId", KIND_OF_FOOD_EMPTY);
+            renderMessageError("kofId", KIND_OF_FOOD_SELECT);
             status = false;
         }
         if (isEmpty(food.fName)) {
-            renderMessageError("#fName", KIND_OF_FOOD_EMPTY);
-            status = false;
-        } else if (isLength(food.fName, 5)) {
-            renderMessageError("#fName", KIND_OF_FOOD_EMPTY);
+            renderMessageError("fName", FOOD_EMPTY);
             status = false;
         }
         if (isEmpty(food.fPrice)) {
-            renderMessageError("#fPrice", KIND_OF_FOOD_EMPTY);
+            renderMessageError("fPrice", FOOD_PRICE_EMPTY);
             status = false;
         } else if (isMax(food.fPrice, 999)) {
-            renderMessageError("#fPrice", KIND_OF_FOOD_EMPTY);
+            renderMessageError("fPrice", FOOD_PRICE_MIN);
             status = false;
         }
         if (status) {
@@ -67,6 +72,7 @@ function FormFood(props) {
                 if (res.data.status) {
                     dispatch(dispatchCreateFood(res.data));
                     showSuccessToast(`Món ăn '${food.fName}' thêm mới thành công.`);
+                    setFood(initialState);
                 }
             } catch (error) {
                 showErrorToast("Lỗi hệ thống, không tạo được món ăn.");
@@ -103,8 +109,14 @@ function FormFood(props) {
                             <label htmlFor="kofId">Loại món ăn:</label>
                         </div>
                         <div className="form-control">
-                            <select id="kofId" name="kofId" onChange={handleChangeInput}>
-                                <option value=""></option>
+                            <select
+                                id="kofId"
+                                name="kofId"
+                                onChange={handleChange}
+                                onBlur={validateForm}
+                                onInput={handleInput}
+                            >
+                                <option value="" defaultValue=""></option>
                                 {lstMenu.map((menu, index) => (
                                     <option key={index} value={menu.kofId} className="option">
                                         {menu.kofName}
@@ -123,7 +135,8 @@ function FormFood(props) {
                                 type="text"
                                 id="fName"
                                 name="fName"
-                                onChange={handleChangeInput}
+                                value={food.fName || ""}
+                                onChange={handleChange}
                                 onBlur={validateForm}
                                 onInput={handleInput}
                             />
@@ -139,7 +152,8 @@ function FormFood(props) {
                                 type="number"
                                 id="fPrice"
                                 name="fPrice"
-                                onChange={handleChangeInput}
+                                value={food.fPrice || ""}
+                                onChange={handleChange}
                                 onBlur={validateForm}
                                 onInput={handleInput}
                             />
@@ -154,7 +168,8 @@ function FormFood(props) {
                             <textarea
                                 id="fDescription"
                                 name="fDescription"
-                                onChange={handleChangeInput}
+                                value={food.fDescription || ""}
+                                onChange={handleChange}
                                 onInput={handleInput}
                             />
                             <span className="form-error"></span>

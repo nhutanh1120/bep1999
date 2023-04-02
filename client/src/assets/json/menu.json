@@ -1,22 +1,22 @@
 [
     {
         "icon": "bx bx-user",
-        "content": "Cá nhân",
+        "content": "cá nhân",
         "path": "/dashboard/"
     },
     {
         "icon": "bx bx-wallet-alt",
-        "content": "Sản phẩm",
+        "content": "sản phẩm",
         "path": "/dashboard/saved"
     },
     {
         "icon": "bx bx-cog",
-        "content": "Cài đặt",
+        "content": "cài đặt",
         "path": "/dashboard/setting"
     },
     {
         "icon": "bx bx-log-out-circle bx-rotate-180",
-        "content": "Đăng suất",
+        "content": "đăng suất",
         "path": "/",
         "event": "handleLogout"
     }

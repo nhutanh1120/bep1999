@@ -69,3 +69,34 @@
 select.focus {
     border-color: red;
 }
+
+.table-aside {
+    position: fixed;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.8;
+    z-index: 99;
+}
+
+@media (max-width: 450px) {
+    .table-create {
+        position: fixed;
+        top: 100%;
+        left: 50%;
+        width: 350px;
+        transform: translateX(-50%);
+        z-index: 100;
+    }
+
+    .table-create.active {
+        top: 25%;
+    }
+
+    .table-create.active ~ .table-aside {
+        top: 0;
+    }
+}

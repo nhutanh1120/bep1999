@@ -7,7 +7,9 @@ function TableDetail({ open }) {
         content.current.classList.add("close");
     };
     useEffect(() => {
-        content.current.classList.remove("close");
+        if (open) {
+            content.current.classList.remove("close");
+        }
     }, [open]);
     return (
         <div ref={content} className="detail-container close">

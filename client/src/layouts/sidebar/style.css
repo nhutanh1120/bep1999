@@ -133,6 +133,10 @@
     transition: 0s;
 }
 
+.sidebar li span::first-letter {
+    text-transform: uppercase;
+}
+
 .sidebar li:hover .tooltip {
     opacity: 1;
     pointer-events: auto;

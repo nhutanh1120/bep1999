@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { isEmpty } from "./../../utils/validation/validation";
 import { TABLES_EMPTY, TABLES_QUICKLY_EMPTY } from "./../../../constants/message";
@@ -6,10 +6,21 @@ import { showSuccessToast, showErrorToast } from "./../../utils/notification/mes
 import tablesAPI from "./../../../api/tablesAPI";
 import "./style.css";
 
-function CreateTable({ requestCreateTable }) {
+function CreateTable({ open, requestCreateTable }) {
+    const content = useRef();
     const token = useSelector((state) => state.token);
     const [state, setState] = useState("");
     const [type, setType] = useState(true);
+
+    useEffect(() => {
+        if (open) {
+            content.current.classList.add("active");
+        }
+    }, [open]);
+
+    const handleCloseForm = () => {
+        content.current.classList.remove("active");
+    };
 
     const handleChange = (e) => {
         setState(e.target.value);
@@ -59,43 +70,46 @@ function CreateTable({ requestCreateTable }) {
     };
 
     return (
-        <div className="table-create form-second">
-            <div className="form-container">
-                <div className="form-header">
-                    <div className="form-title active" onClick={handleClick}>
-                        thêm bàn
-                    </div>
-                    <div className="form-title" onClick={handleClick}>
-                        tạo nhanh
-                    </div>
-                </div>
-                <div className="form-content">
-                    <div className="form-group">
-                        <div className="form-label">
-                            <label htmlFor="tName">{type ? "Tên bàn" : "Số lượng bàn"}:</label>
+        <Fragment>
+            <div ref={content} className="table-create form-second">
+                <div className="form-container">
+                    <div className="form-header">
+                        <div className="form-title active" onClick={handleClick}>
+                            thêm bàn
                         </div>
-                        <div className="form-control">
-                            <input
-                                type={type ? "text" : "number"}
-                                id="tName"
-                                name="tName"
-                                value={state || ""}
-                                onChange={handleChange}
-                                onBlur={validateForm}
-                                onInput={handleInput}
-                                min={type ? "" : 1}
-                            />
-                            <span className="form-error"></span>
+                        <div className="form-title" onClick={handleClick}>
+                            tạo nhanh
                         </div>
                     </div>
+                    <div className="form-content">
+                        <div className="form-group">
+                            <div className="form-label">
+                                <label htmlFor="tName">{type ? "Tên bàn" : "Số lượng bàn"}:</label>
+                            </div>
+                            <div className="form-control">
+                                <input
+                                    type={type ? "text" : "number"}
+                                    id="tName"
+                                    name="tName"
+                                    value={state || ""}
+                                    onChange={handleChange}
+                                    onBlur={validateForm}
+                                    onInput={handleInput}
+                                    min={type ? "" : 1}
+                                />
+                                <span className="form-error"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="form-submit">
+                    <button type="submit" onClick={handleSubmit}>
+                        thêm mới
+                    </button>
                 </div>
             </div>
-            <div className="form-submit">
-                <button type="submit" onClick={handleSubmit}>
-                    thêm mới
-                </button>
-            </div>
-        </div>
+            <div className="table-aside" onClick={handleCloseForm}></div>
+        </Fragment>
     );
 }
 

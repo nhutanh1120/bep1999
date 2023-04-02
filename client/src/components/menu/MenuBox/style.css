@@ -55,10 +55,16 @@
     min-height: 150px;
 }
 
+.menu-box .content .food-name::first-letter {
+    text-transform: uppercase;
+}
+
 .menu-box .content table {
     width: 100%;
     margin-bottom: 16px;
     text-align: center;
+    border-top: 1px solid var(--txt-white);
+    border-left: 1px solid var(--txt-white);
 }
 
 .menu-box .content table th {

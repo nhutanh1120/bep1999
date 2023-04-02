@@ -183,13 +183,13 @@
     background-color: #fff !important;
 }
 
-@media only screen and (max-width: 900px) {
+@media (max-width: 900px) {
     .navbar-title {
         display: none;
     }
 }
 
-@media only screen and (max-width: 430px) {
+@media (max-width: 430px) {
     .navbar-search {
         display: none;
     }

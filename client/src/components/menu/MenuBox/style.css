@@ -125,4 +125,16 @@ td {
         border-top: 8px solid #c1392b;
         border-right: 8px solid transparent;
     }
+
+    .menu-box .content {
+        padding: 10px;
+        min-height: 90px;
+    }
+
+    .menu-box .content table,
+    th,
+    td {
+        padding: 6px;
+        font-size: 12px;
+    }
 }

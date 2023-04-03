@@ -20,7 +20,7 @@ function TableDetail({ open }) {
                         <i className="bx bx-x bx-sm"></i>
                     </div>
                 </div>
-                {open}
+                <div className="content-body"></div>
             </div>
         </div>
     );

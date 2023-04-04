@@ -8,7 +8,9 @@ const menuReducer = (state = initialState, action) => {
         }
         case ACTIONS.CREATE_KIND_OF_FOOD: {
             const newMenu = [...state];
-            newMenu.push(action.payload.kindOfFood);
+            const kofFood = action.payload.kindOfFood;
+            kofFood.food = [];
+            newMenu.push(kofFood);
             return newMenu;
         }
         case ACTIONS.CREATE_FOOD: {

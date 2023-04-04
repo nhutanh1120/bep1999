@@ -7,10 +7,10 @@ function ListTable({ listTable, setOpenCreate, setOpenDetail }) {
         setOpenCreate(Math.random());
     };
     return (
-        <div className="list-table row">
+        <div className="row no-gutters list-table">
             {listTable.length !== 0 &&
                 listTable.map((table, index) => <Table key={index} data={table} setOpenDetail={setOpenDetail} />)}
-            <div className="tables col l-2" onClick={handleClick}>
+            <div className="col l-2 tables" onClick={handleClick}>
                 <h5>
                     <i className="bx bx-plus"></i>
                 </h5>

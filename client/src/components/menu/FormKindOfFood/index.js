@@ -63,12 +63,21 @@ function FormKindOfFood(props) {
         e.target.nextElementSibling.innerText = "";
     };
 
+    const handleKeyUp = (e) => {
+        if (e.keyCode === 13) {
+            handleSubmit();
+        }
+    };
+
     const closeForm = () => {
         props.toggleDisplay(null);
         document.querySelector("#overlay").classList.remove("active");
     };
     return (
-        <div className={(props.display === "kind" && "form kind-of-food show") || "form kind-of-food"}>
+        <div
+            className={(props.display === "kind" && "form kind-of-food show") || "form kind-of-food"}
+            onKeyUp={handleKeyUp}
+        >
             <div className="form-close" onClick={closeForm}>
                 <i className="bx bx-x bx-md"></i>
             </div>

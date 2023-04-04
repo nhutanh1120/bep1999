@@ -94,6 +94,12 @@ function Login(props) {
         e.target.nextElementSibling.innerText = "";
     };
 
+    const handleKeyUp = (e) => {
+        if (e.keyCode === 13) {
+            handleSubmit();
+        }
+    };
+
     const closeForm = () => {
         props.toggleLogin(false);
         document.querySelector("#overlay").classList.remove("active");
@@ -105,7 +111,7 @@ function Login(props) {
     };
 
     return (
-        <div id="login" className={(props.display && "form login show") || "form login"}>
+        <div id="login" className={(props.display && "form login show") || "form login"} onKeyUp={handleKeyUp}>
             <div className="form-close" onClick={closeForm}>
                 <i className="bx bx-x bx-md"></i>
             </div>

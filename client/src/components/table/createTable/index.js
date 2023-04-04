@@ -39,6 +39,12 @@ function CreateTable({ open, requestCreateTable }) {
         e.target.nextElementSibling.innerText = "";
     };
 
+    const handleKeyUp = (e) => {
+        if (e.keyCode === 13) {
+            handleSubmit();
+        }
+    };
+
     const handleClick = (e) => {
         const element = document.querySelector("#tName");
         document.querySelector(".form-title.active").classList.remove("active");
@@ -71,7 +77,7 @@ function CreateTable({ open, requestCreateTable }) {
 
     return (
         <Fragment>
-            <div ref={content} className="table-create form-second">
+            <div ref={content} className="table-create form-second" onKeyUp={handleKeyUp}>
                 <div className="form-container">
                     <div className="form-header">
                         <div className="form-title active" onClick={handleClick}>

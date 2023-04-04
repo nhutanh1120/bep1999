@@ -75,6 +75,7 @@ function FormFood(props) {
                     setFood(initialState);
                 }
             } catch (error) {
+                console.log(error);
                 showErrorToast("Lỗi hệ thống, không tạo được món ăn.");
             }
         }
@@ -83,6 +84,12 @@ function FormFood(props) {
     const handleInput = (e) => {
         e.target.classList.remove("focus");
         e.target.nextElementSibling.innerText = "";
+    };
+
+    const handleKeyUp = (e) => {
+        if (e.keyCode === 13) {
+            handleSubmit();
+        }
     };
 
     const closeForm = () => {
@@ -97,7 +104,7 @@ function FormFood(props) {
     };
 
     return (
-        <div className={(props.display === "food" && "form food show") || "form food"}>
+        <div className={(props.display === "food" && "form food show") || "form food"} onKeyUp={handleKeyUp}>
             <div className="form-close" onClick={closeForm}>
                 <i className="bx bx-x bx-md"></i>
             </div>

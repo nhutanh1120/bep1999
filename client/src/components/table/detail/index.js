@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ListMenu from "./ListMenu";
 import "./style.css";
@@ -6,6 +6,7 @@ import "./style.css";
 function TableDetail({ open }) {
     const content = useRef();
     const lstMenu = useSelector((state) => state.menu);
+    const [menuData, setMenuData] = useState([]);
     const handleCloseContent = () => {
         content.current.classList.add("close");
     };
@@ -15,6 +16,16 @@ function TableDetail({ open }) {
             content.current.classList.remove("close");
         }
     }, [open]);
+
+    useEffect(() => {
+        if (lstMenu) {
+            let dataSort = [];
+            lstMenu.map((menu) => {
+                return dataSort.push(...menu.food);
+            });
+            setMenuData(dataSort);
+        }
+    }, [lstMenu]);
 
     return (
         <div ref={content} className="detail-container close">
@@ -35,7 +46,7 @@ function TableDetail({ open }) {
                             <div className="order-footer"></div>
                         </div>
                         <div className="col l-7">
-                            <ListMenu lstMenu={lstMenu} />
+                            <ListMenu lstMenu={menuData} />
                         </div>
                     </div>
                 </div>

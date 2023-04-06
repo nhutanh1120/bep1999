@@ -3,15 +3,15 @@ import "./style.css";
 
 function ListMenu({ lstMenu }) {
     return (
-        <div className="grid list-menu">
+        <div className="list-menu">
             {lstMenu.length !== 0 &&
                 lstMenu.map((menu, index) => (
-                    <div key={index} className="col l-2 menu-item">
+                    <div key={index} className="menu-item">
                         <div className="image">
-                            <img src="" alt="menu" />
+                            <img src="" alt={menu.fName} />
                         </div>
-                        <div className="name">{menu.kofName}</div>
-                        <div className="price"></div>
+                        <div className="name">{menu.fName}</div>
+                        <div className="price">{menu.fPrice}</div>
                     </div>
                 ))}
         </div>

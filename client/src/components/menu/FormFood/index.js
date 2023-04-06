@@ -75,7 +75,6 @@ function FormFood(props) {
                     setFood(initialState);
                 }
             } catch (error) {
-                console.log(error);
                 showErrorToast("Lỗi hệ thống, không tạo được món ăn.");
             }
         }

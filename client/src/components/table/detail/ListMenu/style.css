@@ -1,15 +1,21 @@
 .list-menu .menu-item {
     float: left;
-    margin-right: 10px;
     width: 150px;
     height: 200px;
+    margin-right: 15px;
     border-radius: 12px;
+    cursor: pointer;
 }
 
 .list-menu .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 150px;
     height: 135px;
-    color: var(--primary-color);
+    margin-bottom: 8px;
+    color: var(--txt-color);
+    box-shadow: var(--box-shadow);
 }
 
 .list-menu .image img {
@@ -30,4 +36,5 @@
     font-size: 18px;
     font-weight: 600;
     text-align: center;
+    text-transform: uppercase;
 }

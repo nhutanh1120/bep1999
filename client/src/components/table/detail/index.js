@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ListMenu from "./ListMenu";
+import DetailOrders from "./DetailOrders";
 import "./style.css";
 
 function TableDetail({ open }) {
@@ -40,10 +41,8 @@ function TableDetail({ open }) {
                 </div>
                 <div className="grid content-body">
                     <div className="row no-gutters">
-                        <div className="col l-5 detail-orders">
-                            <div className="order-header"></div>
-                            <div className="order-container"></div>
-                            <div className="order-footer"></div>
+                        <div className="col l-5">
+                            <DetailOrders />
                         </div>
                         <div className="col l-7">
                             <ListMenu lstMenu={menuData} />

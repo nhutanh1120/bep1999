@@ -1,0 +1,11 @@
+.detail-orders {
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;
+}
+
+.detail-orders .order-container {
+    width: 100%;
+    height: 100%;
+    box-shadow: var(--box-shadow);
+}

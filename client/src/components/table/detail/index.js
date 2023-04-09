@@ -8,8 +8,25 @@ function TableDetail({ open }) {
     const content = useRef();
     const lstMenu = useSelector((state) => state.menu);
     const [menuData, setMenuData] = useState([]);
+    const [listOrders, setListOrders] = useState([]);
     const handleCloseContent = () => {
         content.current.classList.add("close");
+    };
+
+    const addFoodToOrders = (data) => {
+        if (listOrders.length === 0) {
+            data.quality = 1;
+            setListOrders([data]);
+        } else {
+            const idx = listOrders.findIndex((item) => item.fId === data.fId);
+            if (idx === -1) {
+                data.quality = 1;
+                setListOrders([...listOrders, data]);
+            } else {
+                listOrders[idx].quality = listOrders[idx].quality + 1;
+                setListOrders([...listOrders]);
+            }
+        }
     };
 
     useEffect(() => {
@@ -32,6 +49,16 @@ function TableDetail({ open }) {
         <div ref={content} className="detail-container close">
             <div className="content">
                 <div className="content-header">
+                    <div className="grid">
+                        <div className="row no-gutters">
+                            <div className="col l-5 pl-15">
+                                <div className="header-info">
+                                    <div className="table-name">bàn&nbsp;{open?.tName}</div>
+                                </div>
+                            </div>
+                            <div className="col l-7"></div>
+                        </div>
+                    </div>
                     <div className="content-close">
                         <div className="background-close" onClick={handleCloseContent}></div>
                         <div className="icon-close" onClick={handleCloseContent}>
@@ -42,10 +69,10 @@ function TableDetail({ open }) {
                 <div className="grid content-body">
                     <div className="row no-gutters">
                         <div className="col l-5">
-                            <DetailOrders />
+                            <DetailOrders listOrders={listOrders} />
                         </div>
                         <div className="col l-7">
-                            <ListMenu lstMenu={menuData} />
+                            <ListMenu lstMenu={menuData} addFoodToOrders={addFoodToOrders} />
                         </div>
                     </div>
                 </div>

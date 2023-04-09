@@ -118,11 +118,12 @@ function FormFood(props) {
                             <select
                                 id="kofId"
                                 name="kofId"
+                                value={food.kofId || ""}
                                 onChange={handleChange}
                                 onBlur={validateForm}
                                 onInput={handleInput}
                             >
-                                <option value="" defaultValue=""></option>
+                                <option value="" className="option"></option>
                                 {lstMenu.map((menu, index) => (
                                     <option key={index} value={menu.kofId} className="option">
                                         {menu.kofName}

@@ -2,7 +2,7 @@ import React from "react";
 
 function Table({ data, setOpenDetail }) {
     const handleClick = () => {
-        setOpenDetail(data.tId);
+        setOpenDetail(data);
     };
     return (
         <div className="tables col l-2" onClick={handleClick}>

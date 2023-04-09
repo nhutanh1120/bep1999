@@ -75,8 +75,8 @@
 }
 
 .menu-box .content table,
-th,
-td {
+.menu-box .content th,
+.menu-box .content td {
     border-right: 1px solid var(--txt-white);
     border-bottom: 1px solid #dee2e6;
     border-collapse: collapse;
@@ -132,8 +132,8 @@ td {
     }
 
     .menu-box .content table,
-    th,
-    td {
+    .menu-box .content th,
+    .menu-box .content td {
         padding: 6px;
         font-size: 12px;
     }

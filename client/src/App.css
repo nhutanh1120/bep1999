@@ -7,3 +7,11 @@ body {
     -ms-user-select: none;
     -webkit-user-select: none;
 }
+
+.pl-15 {
+    padding-left: 15px !important;
+}
+
+.pr-15 {
+    padding-right: 15px !important;
+}

@@ -1,7 +1,19 @@
 import React from "react";
 import "./style.css";
 
-function DetailOrders() {
+const RenderOrderItem = ({ index, item }) => {
+    return (
+        <tr>
+            <td>{index + 1}</td>
+            <td className="name">{item?.fName}</td>
+            <td>{item?.quality}</td>
+            <td>{item?.fPrice}</td>
+            <td>{Number(item?.quality) * Number(item?.fPrice)}</td>
+        </tr>
+    );
+};
+
+function DetailOrders({ listOrders }) {
     return (
         <div className="detail-orders">
             <div className="order-header"></div>
@@ -17,13 +29,8 @@ function DetailOrders() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        {listOrders.length !== 0 &&
+                            listOrders.map((item, index) => <RenderOrderItem key={index} index={index} item={item} />)}
                     </tbody>
                 </table>
             </div>

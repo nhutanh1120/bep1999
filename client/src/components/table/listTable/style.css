@@ -16,6 +16,10 @@
     cursor: pointer;
 }
 
+.list-table .tables.active {
+    background-color: #ea7085 !important;
+}
+
 .list-table .tables h5 {
     font-size: 18px;
     font-weight: 800;

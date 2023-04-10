@@ -7,6 +7,7 @@ import ScrollTop from "./scrollTop";
 import kindOfFoodAPI from "./../api/menuAPI";
 import { dispatchFindAllMenu } from "./../redux/actions/menuAction";
 import { useDispatch } from "react-redux";
+import "moment/locale/vi";
 import "./../assets/css/grid.css";
 import "./../assets/css/layoutDashboard.css";
 

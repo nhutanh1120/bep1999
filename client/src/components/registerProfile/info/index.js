@@ -36,14 +36,14 @@ function Info(props) {
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="rptPassword" className="form-label">
+                <label htmlFor="birthday" className="form-label">
                     sinh nhật
                 </label>
                 <input
-                    type="text"
-                    id="rptPassword"
-                    name="rptPassword"
-                    value={props.state.rptPassword || ""}
+                    type="date"
+                    id="birthday"
+                    name="birthday"
+                    value={props.state.birthday || ""}
                     className="form-control"
                     onChange={handleChange}
                 />
@@ -52,14 +52,11 @@ function Info(props) {
                 <label htmlFor="rptPassword" className="form-label">
                     giới tính
                 </label>
-                <input
-                    type="text"
-                    id="rptPassword"
-                    name="rptPassword"
-                    value={props.state.rptPassword || ""}
-                    className="form-control"
-                    onChange={handleChange}
-                />
+                <select name="male" className="form-control" onChange={handleChange}>
+                    <option value=""></option>
+                    <option value="0">nữ</option>
+                    <option value="1">nam</option>
+                </select>
             </div>
             <div className="form-group">
                 <label htmlFor="phone" className="form-label">

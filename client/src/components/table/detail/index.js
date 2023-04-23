@@ -9,6 +9,15 @@ function TableDetail({ open }) {
     const lstMenu = useSelector((state) => state.menu);
     const [menuData, setMenuData] = useState([]);
     const [listOrders, setListOrders] = useState([]);
+    const [total, setTotal] = useState(0);
+
+    const pureTotal = () => {
+        const sum = listOrders.reduce((accumulator, object) => {
+            return accumulator + object.fPrice * object.quality;
+        }, 0);
+        setTotal(sum);
+    };
+
     const handleCloseContent = () => {
         content.current.classList.add("close");
     };
@@ -27,6 +36,7 @@ function TableDetail({ open }) {
                 setListOrders([...listOrders]);
             }
         }
+        pureTotal();
     };
 
     useEffect(() => {
@@ -69,7 +79,7 @@ function TableDetail({ open }) {
                 <div className="grid content-body">
                     <div className="row no-gutters">
                         <div className="col l-5">
-                            <DetailOrders listOrders={listOrders} />
+                            <DetailOrders listOrders={listOrders} total={total} />
                         </div>
                         <div className="col l-7">
                             <ListMenu lstMenu={menuData} addFoodToOrders={addFoodToOrders} />

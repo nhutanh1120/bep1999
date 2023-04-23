@@ -74,9 +74,7 @@ function Login(props) {
         if (status) {
             try {
                 const res = await authAPI.login(username, password);
-                if (!res.data.status && !res.data.token) {
-                    showErrorToast("Tài khoản hoặc mật khẩu không chính xác.");
-                } else if (res.data.status) {
+                if (res.data.status) {
                     closeForm();
                     setState({ ...state });
                     localStorage.setItem("firstLogin", true);
@@ -84,7 +82,12 @@ function Login(props) {
                     navigate("/dashboard", { replace: true });
                 }
             } catch (error) {
-                showErrorToast("Lỗi hệ thống, vui lòng thử lại sau.");
+                if (error?.response && !error.response.data.status) {
+                    showErrorToast("Tài khoản hoặc mật khẩu không chính xác.");
+                } else {
+                    console.log(error);
+                    showErrorToast("Lỗi hệ thống, vui lòng thử lại sau.");
+                }
             }
         }
     };

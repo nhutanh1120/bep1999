@@ -1,19 +1,20 @@
 import React from "react";
+import { formatNumber } from "./../../../utils/format/index";
 import "./style.css";
 
 const RenderOrderItem = ({ index, item }) => {
     return (
         <tr>
             <td>{index + 1}</td>
-            <td className="name">{item?.fName}</td>
+            <td className="name text-left">{item?.fName}</td>
             <td>{item?.quality}</td>
-            <td>{item?.fPrice}</td>
-            <td>{Number(item?.quality) * Number(item?.fPrice)}</td>
+            <td className="text-right">{formatNumber(item?.fPrice)}</td>
+            <td className="text-right">{formatNumber(Number(item?.quality) * Number(item?.fPrice))}</td>
         </tr>
     );
 };
 
-function DetailOrders({ listOrders }) {
+function DetailOrders({ listOrders, total }) {
     return (
         <div className="detail-orders">
             <div className="order-header"></div>
@@ -34,7 +35,10 @@ function DetailOrders({ listOrders }) {
                     </tbody>
                 </table>
             </div>
-            <div className="order-footer"></div>
+            <div className="order-footer">
+                <span>{formatNumber(total)}&nbsp;vnd</span>&nbsp;
+                <button>thanh toán</button>
+            </div>
         </div>
     );
 }

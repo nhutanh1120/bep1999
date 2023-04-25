@@ -82,6 +82,16 @@ class Table {
                     WHERE isDeleted = 0`;
         return db.execute(sql);
     }
+
+    static updateStatusTable(id, status) {
+        const sql = `UPDATE
+                        tables
+                    SET
+                        status = ?
+                    WHERE
+                        id = ?`;
+        return db.execute(sql, [id, status]);
+    }
 }
 
 module.exports = Table;

@@ -1,15 +1,15 @@
 const db = require("./../config/db/index");
 class Bill {
     constructor(params) {
-        this.total = params.total || 0;
-        this.discount = params.discount || null;
-        this.unit = params.unit || null;
-        this.payments = params.payments || null;
-        this.status = params.status || 0;
-        this.isDeleted = params.isDeleted || 0;
-        this.createdAt = params.createdAt || null;
-        this.updatedAt = params.updatedAt || null;
-        this.fkUsersId = params.fkUsersId;
+        this.total = params?.total || 0;
+        this.discount = params?.discount || null;
+        this.unit = params?.unit || null;
+        this.payments = params?.payments || null;
+        this.status = params?.status || 0;
+        this.isDeleted = params?.isDeleted || 0;
+        this.createdAt = params?.createdAt || null;
+        this.updatedAt = params?.updatedAt || null;
+        this.fkUsersId = params?.fkUsersId;
     }
 
     async save() {

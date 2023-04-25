@@ -23,6 +23,24 @@ class OrderDetails {
         const sql = "SELECT * FROM order_details";
         return db.execute(sql);
     }
+
+    static createListOrder(arrParam, idBill) {
+        let sql = `INSERT INTO order_details (
+                        id,
+                        name,
+                        quality,
+                        unit_price,
+                        fk_bill_id
+        )
+        VALUES`;
+        let listParam = [];
+        for (const param of arrParam) {
+            sql = `${sql} (?, ?, ?, ?, ?),`;
+            console.log(param);
+            listParam = [...listParam, ...Object.values(param), idBill];
+        }
+        return db.execute(sql.slice(0, sql.length - 1), listParam);
+    }
 }
 
 module.exports = OrderDetails;

@@ -32,13 +32,11 @@
 
 .detail-orders .order-container table th {
     color: var(--second-color);
-    padding: 12px;
-    font-size: 15px;
-    font-weight: 400;
     text-transform: capitalize;
 }
 
-.detail-orders .order-container td {
+.detail-orders .order-container td,
+.detail-orders .order-container table th {
     padding: 12px;
     font-size: 15px;
     font-weight: 400;
@@ -53,4 +51,20 @@
 }
 .detail-orders .order-footer {
     padding: 10px;
+}
+
+@media (max-width: 450px) {
+    .detail-orders .order-container {
+        height: 200px;
+    }
+
+    .detail-orders .order-container td,
+    .detail-orders .order-container table th {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .detail-orders .order-container table th {
+        font-weight: 800;
+    }
 }

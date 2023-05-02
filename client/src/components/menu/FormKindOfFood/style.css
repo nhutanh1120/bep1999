@@ -11,3 +11,19 @@
     width: 350px;
     height: 70px;
 }
+
+@media (max-width: 450px) {
+    .form.kind-of-food {
+        width: 100vw !important;
+        padding: 30px 10px 20px !important;
+    }
+
+    .form.kind-of-food .form-content {
+        padding: 30px 20px 20px;
+    }
+
+    .form.kind-of-food .form-control input,
+    .form.kind-of-food .form-control textarea {
+        width: calc(100vw - 60px);
+    }
+}

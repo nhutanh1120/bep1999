@@ -78,10 +78,10 @@ function TableDetail({ open }) {
                 </div>
                 <div className="grid content-body">
                     <div className="row no-gutters">
-                        <div className="col l-5">
+                        <div className="col l-5 c-12">
                             <DetailOrders listOrders={listOrders} total={total} />
                         </div>
-                        <div className="col l-7">
+                        <div className="col l-7 c-12">
                             <ListMenu lstMenu={menuData} addFoodToOrders={addFoodToOrders} />
                         </div>
                     </div>

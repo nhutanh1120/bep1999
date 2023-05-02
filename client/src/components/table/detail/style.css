@@ -80,7 +80,12 @@
 @media (max-width: 450px) {
     .tables-detail .detail-container {
         left: 0;
+        top: 0;
         width: 100%;
         border-radius: 0;
+    }
+    .tables-detail .detail-container .content {
+        background-color: var(--second-background);
+        height: 100vh;
     }
 }

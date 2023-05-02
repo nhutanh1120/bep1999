@@ -20,7 +20,7 @@
     padding: 0 30px;
 }
 
-.navbar-menu li>a {
+.navbar-menu li > a {
     text-decoration: none;
     text-transform: uppercase;
     transition: all 0.5s ease;
@@ -29,4 +29,10 @@
 
 .navbar-menu li:hover a {
     color: #fc5492;
+}
+
+@media (max-width: 450px) {
+    .navbar-pc {
+        display: none !important;
+    }
 }

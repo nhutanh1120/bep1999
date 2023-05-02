@@ -25,3 +25,20 @@ select {
 .form.food .form-control .option {
     text-transform: capitalize;
 }
+
+@media (max-width: 450px) {
+    .form.food {
+        width: 100vw !important;
+        padding: 30px 10px 20px !important;
+    }
+
+    .form.food .form-content {
+        padding: 30px 20px 20px;
+    }
+
+    .form.food .form-control input,
+    .form.food .form-control textarea,
+    .form.food .form-control select {
+        width: calc(100vw - 60px);
+    }
+}
